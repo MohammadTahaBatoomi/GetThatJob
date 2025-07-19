@@ -1,12 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <script src="script.js"></script>
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>تودولیست حرفه‌ای</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body class="light">
+    <div id="loader" class="loader">لطفاً صبر کنید...</div>
+
+    <main class="container hidden" id="app">
+      <header class="header">
+        <h1>📝 تودولیست حرفه‌ای</h1>
+        <div class="controls">
+          <select id="themeSwitcher">
+            <option value="light">🌞 روشن</option>
+            <option value="dark">🌙 تاریک</option>
+          </select>
+          <button id="exportJson">📤 خروجی JSON</button>
+          <button id="exportCsv">📤 خروجی CSV</button>
+        </div>
+      </header>
+
+      <form id="todoForm">
+        <input type="text" id="title" placeholder="عنوان تودو را وارد کنید..." required />
+        <textarea id="description" placeholder="توضیحات (اختیاری)"></textarea>
+        <input type="number" id="timerDuration" placeholder="مدت زمان تایمر (ثانیه)" min="1" max="3600" value="10" required />
+        <select id="difficulty">
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+        <input type="text" id="category" placeholder="دسته‌بندی..." />
+        <button type="submit">➕ افزودن</button>
+      </form>
+
+      <div class="filters">
+        <input type="text" id="search" placeholder="🔍 جستجو..." />
+        <select id="sort">
+          <option value="newest">جدیدترین</option>
+          <option value="oldest">قدیمی‌ترین</option>
+          <option value="difficulty">سختی</option>
+        </select>
+        <select id="filterSelect">
+          <option value="all">همه</option>
+          <option value="done">انجام شده‌ها</option>
+          <option value="undone">انجام نشده‌ها</option>
+          <option value="difficulty_1">سختی ۱</option>
+          <option value="difficulty_2">سختی ۲</option>
+          <option value="difficulty_3">سختی ۳</option>
+          <option value="difficulty_4">سختی ۴</option>
+          <option value="difficulty_5">سختی ۵</option>
+        </select>
+      </div>
+
+      <section id="todoList" class="todo-list"></section>
+    </main>
+  </body>
+  </html>
