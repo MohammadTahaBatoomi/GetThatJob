@@ -22,17 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const app = document.getElementById("app");
   const form = document.getElementById("todoForm");
   const inputTitle = document.getElementById("title");
-  const inputDesc = document.getElementById("description");
-  const inputCategory = document.getElementById("category");
-  const selectDifficulty = document.getElementById("difficulty");
-  const inputTimerDuration = document.getElementById("timerDuration");
   const todoListEl = document.getElementById("todoList");
+  const remainingTodosEl = document.getElementById("remainingTodos");
   const themeSelect = document.getElementById("themeSwitcher");
   const sortSelect = document.getElementById("sort");
   const filterSelect = document.getElementById("filterSelect");
   const exportJsonBtn = document.getElementById("exportJson");
   const exportCsvBtn = document.getElementById("exportCsv");
   const searchInput = document.getElementById("search");
+  const inputColor = document.getElementById("color");
+  const exportPdfBtn = document.getElementById("exportPdf");
+  const backupBtn = document.getElementById("backupBtn");
+  const restoreBtn = document.getElementById("restoreBtn");
+  const restoreInput = document.getElementById("restoreInput");
 
   const timers = new Map();
   let todos = getTodos();
@@ -46,42 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
   loader.style.display = "none";
   app.classList.remove("hidden");
 
-  // پیام خطا
-  const showError = (msg) => alert(msg);
+  // پیام خطا (toast)
+  const showError = (msg) => {
+    let toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  };
 
   // اضافه کردن تودو
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const title = inputTitle.value.trim();
-    if (title.length === 0) return showError("عنوان نمی‌تواند خالی باشد.");
-    if (title.length > 100) return showError("عنوان باید کمتر از ۱۰۰ کاراکتر باشد.");
-
-    const description = inputDesc.value.trim();
-    if (description.length > 500) return showError("توضیحات باید کمتر از ۵۰۰ کاراکتر باشد.");
-
-    const category = inputCategory.value.trim() || "عمومی";
-
-    const difficulty = Number(selectDifficulty.value);
-    if (!(difficulty >= 1 && difficulty <= 5)) return showError("سطح سختی معتبر نیست.");
-
-    let timerDuration = Number(inputTimerDuration.value);
-    if (isNaN(timerDuration) || timerDuration < 1 || timerDuration > 3600)
-      return showError("مدت زمان تایمر باید بین 1 تا 3600 ثانیه باشد.");
-
+    if (title.length === 0) return showError("Task cannot be empty.");
+    if (title.length > 100) return showError("Task is too long.");
     todos.push({
       id: Date.now(),
       title,
-      description,
-      category,
-      difficulty,
       done: false,
-      timerDuration,
-      timerRemaining: timerDuration,
-      timerRunning: false,
       createdAt: Date.now(),
     });
-
     saveTodos(todos);
     renderTodos();
     form.reset();
@@ -90,156 +77,55 @@ document.addEventListener("DOMContentLoaded", () => {
   // رندر تودوها
   const renderTodos = () => {
     todoListEl.innerHTML = "";
-    let filtered = [...todos];
-
-    const filter = filterSelect ? filterSelect.value : "all";
-    if (filter === "done") filtered = filtered.filter(t => t.done);
-    else if (filter === "undone") filtered = filtered.filter(t => !t.done);
-    else if (filter && filter.startsWith("difficulty_")) {
-      const lvl = Number(filter.split("_")[1]);
-      filtered = filtered.filter(t => t.difficulty === lvl);
-    }
-
-    const sort = sortSelect ? sortSelect.value : "newest";
-    if (sort === "newest") filtered.sort((a,b) => b.createdAt - a.createdAt);
-    else if (sort === "oldest") filtered.sort((a,b) => a.createdAt - b.createdAt);
-    else if (sort === "difficulty") filtered.sort((a,b) => b.difficulty - a.difficulty);
-
-    // فیلتر بر اساس جستجو
-    const searchQuery = searchInput?.value.trim().toLowerCase() || "";
-    if (searchQuery.length > 0) {
-      filtered = filtered.filter(todo =>
-        todo.title.toLowerCase().includes(searchQuery) ||
-        todo.description.toLowerCase().includes(searchQuery) ||
-        todo.category.toLowerCase().includes(searchQuery)
-      );
-    }
-
-    if (filtered.length === 0) {
-      todoListEl.innerHTML = "<p>تودی وجود ندارد.</p>";
+    if (todos.length === 0) {
+      todoListEl.innerHTML = "<p>No tasks yet.</p>";
+      remainingTodosEl.textContent = "";
       return;
     }
-
-    filtered.forEach(todo => {
+    let remaining = 0;
+    todos.forEach(todo => {
       const div = document.createElement("div");
       div.className = "todo-item" + (todo.done ? " done" : "");
       div.dataset.id = todo.id;
-
-      const titleEl = document.createElement("div");
-      titleEl.className = "title";
-      titleEl.textContent = todo.title;
-      div.appendChild(titleEl);
-
-      if (todo.description) {
-        const descEl = document.createElement("div");
-        descEl.className = "description";
-        descEl.textContent = todo.description;
-        div.appendChild(descEl);
-      }
-
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.innerHTML = `<span>دسته: ${todo.category}</span> <span class="difficulty">${"⭐".repeat(todo.difficulty)}</span>`;
-      div.appendChild(meta);
-
-      const actions = document.createElement("div");
-      actions.className = "actions";
-
-      const doneBtn = document.createElement("button");
-      doneBtn.className = "done-btn";
-      doneBtn.textContent = todo.done ? "بازگرداندن" : "انجام شده";
-      doneBtn.onclick = () => {
+      // Custom checkbox
+      const checkbox = document.createElement("span");
+      checkbox.className = "custom-checkbox" + (todo.done ? " checked" : "");
+      checkbox.innerHTML = todo.done ? `<svg width='16' height='16' viewBox='0 0 16 16'><polyline points='3,8 7,12 13,4' style='fill:none;stroke:white;stroke-width:2'/></svg>` : "";
+      checkbox.onclick = () => {
         todo.done = !todo.done;
         saveTodos(todos);
         renderTodos();
       };
-
+      div.appendChild(checkbox);
+      // Title
+      const titleEl = document.createElement("div");
+      titleEl.className = "todo-title";
+      titleEl.textContent = todo.title;
+      div.appendChild(titleEl);
+      // Delete button
       const delBtn = document.createElement("button");
       delBtn.className = "delete-btn";
-      delBtn.textContent = "حذف";
+      delBtn.innerHTML = "&#10005;";
       delBtn.onclick = () => {
         todos = todos.filter(t => t.id !== todo.id);
         saveTodos(todos);
         renderTodos();
       };
-
-      const editBtn = document.createElement("button");
-      editBtn.className = "edit-btn";
-      editBtn.textContent = "ویرایش";
-      editBtn.onclick = () => {
-        const newTitle = prompt("عنوان جدید:", todo.title);
-        if (newTitle && newTitle.trim() !== "") todo.title = newTitle.trim();
-
-        const newDesc = prompt("توضیحات جدید:", todo.description);
-        if (newDesc !== null) todo.description = newDesc.trim();
-
-        const newCat = prompt("دسته‌بندی جدید:", todo.category);
-        if (newCat !== null) todo.category = newCat.trim();
-
-        const newDiff = prompt("سختی جدید (1 تا 5):", todo.difficulty);
-        const diffNum = Number(newDiff);
-        if (!isNaN(diffNum) && diffNum >=1 && diffNum <=5) todo.difficulty = diffNum;
-
-        const newTimer = prompt("مدت زمان تایمر (ثانیه):", todo.timerDuration);
-        const timerNum = Number(newTimer);
-        if (!isNaN(timerNum) && timerNum >=1 && timerNum <=3600) {
-          todo.timerDuration = timerNum;
-          if (todo.timerRemaining > timerNum) {
-            todo.timerRemaining = timerNum;
-          }
-        }
-
-        saveTodos(todos);
-        renderTodos();
-      };
-
-      const timerBtn = document.createElement("button");
-      timerBtn.className = "timer-btn";
-      if (todo.timerRunning) {
-        timerBtn.textContent = `توقف تایمر (${formatTime(todo.timerRemaining)})`;
-      } else {
-        timerBtn.textContent = `شروع تایمر (${formatTime(todo.timerRemaining)})`;
-      }
-
-      timerBtn.onclick = () => {
-        if (todo.timerRunning) {
-          todo.timerRunning = false;
-          clearInterval(timers.get(todo.id));
-          timers.delete(todo.id);
-        } else {
-          if (todo.timerRemaining <= 0) {
-            todo.timerRemaining = todo.timerDuration;
-          }
-          todo.timerRunning = true;
-
-          timers.set(todo.id, setInterval(() => {
-            if (todo.timerRemaining > 0) {
-              todo.timerRemaining--;
-              saveTodos(todos);
-              renderTodos();
-            } else {
-              todo.timerRunning = false;
-              clearInterval(timers.get(todo.id));
-              timers.delete(todo.id);
-              saveTodos(todos);
-              renderTodos();
-              alert(`تایمر تودو "${todo.title}" به پایان رسید!`);
-            }
-          }, 1000));
-        }
-        saveTodos(todos);
-        renderTodos();
-      };
-
-      actions.appendChild(doneBtn);
-      actions.appendChild(editBtn);
-      actions.appendChild(delBtn);
-      actions.appendChild(timerBtn);
-      div.appendChild(actions);
-
+      div.appendChild(delBtn);
       todoListEl.appendChild(div);
+      if (!todo.done) remaining++;
     });
+    remainingTodosEl.textContent = `Your remaining todos: ${remaining}`;
   };
+
+  // Populate category filter
+  function updateCategoryFilter() {
+    if (!categoryFilter) return;
+    const cats = Array.from(new Set(todos.map(t => t.category)));
+    categoryFilter.innerHTML = '<option value="all">دسته‌بندی: همه</option>' +
+      cats.map(cat => `<option value="${cat}">${cat}</option>`).join("");
+  }
+  if (categoryFilter) categoryFilter.addEventListener("change", renderTodos);
 
   themeSelect.addEventListener("change", (e) => {
     const val = e.target.value;
@@ -251,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sortSelect) sortSelect.addEventListener("change", renderTodos);
   if (filterSelect) filterSelect.addEventListener("change", renderTodos);
   if (searchInput) searchInput.addEventListener("input", renderTodos);
+  if (inputColor) inputColor.addEventListener("input", renderTodos); // Add listener for color input
 
   exportJsonBtn.onclick = () => {
     const data = JSON.stringify(todos, null, 2);
@@ -273,6 +160,48 @@ document.addEventListener("DOMContentLoaded", () => {
     downloadFile("todos.csv", csv, "text/csv");
   };
 
+  // خروجی PDF
+  exportPdfBtn.onclick = () => {
+    import('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js').then(({jsPDF}) => {
+      const doc = new jsPDF();
+      doc.setFont("Vazirmatn");
+      todos.forEach((t, i) => {
+        doc.text(`${i+1}. ${t.title} [${t.category}] - ${t.done ? '✔️' : '❌'}`, 10, 20 + i*15);
+      });
+      doc.save("todos.pdf");
+    });
+  };
+  // بکاپ
+  backupBtn.onclick = () => {
+    const data = JSON.stringify(todos, null, 2);
+    downloadFile("todos-backup.json", data, "application/json");
+  };
+  // بازیابی
+  restoreBtn.onclick = () => {
+    restoreInput.click();
+  };
+  restoreInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const arr = JSON.parse(ev.target.result);
+        if (Array.isArray(arr)) {
+          todos = arr;
+          saveTodos(todos);
+          saveAndRender();
+          showError("بازیابی با موفقیت انجام شد.");
+        } else {
+          showError("فرمت فایل صحیح نیست.");
+        }
+      } catch {
+        showError("خطا در خواندن فایل.");
+      }
+    };
+    reader.readAsText(file);
+  };
+
   function downloadFile(filename, content, type) {
     const blob = new Blob([content], {type});
     const url = URL.createObjectURL(blob);
@@ -283,5 +212,14 @@ document.addEventListener("DOMContentLoaded", () => {
     URL.revokeObjectURL(url);
   }
 
+  // After saving todos or on render, update category filter
+  function saveAndRender() {
+    saveTodos(todos);
+    updateCategoryFilter();
+    renderTodos();
+  }
+
+  // Initial load
+  updateCategoryFilter();
   renderTodos();
 });
