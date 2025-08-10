@@ -191,6 +191,7 @@ body {
 .hero-section {
     text-align: center;
     padding: var(--spacing-2xl) 0;
+    margin-bottom: var(--spacing-2xl);
 }
 
 .hero-section h1 {
@@ -204,6 +205,10 @@ body {
     font-size: 1.25rem;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-xl);
+}
+
+.products-section {
+    margin-top: var(--spacing-2xl);
 }
 
 .cta-btn {

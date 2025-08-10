@@ -6,7 +6,6 @@
     <title>فروشگاه آنلاین</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -49,7 +48,32 @@
             <div class="hero-section">
                 <h1>به فروشگاه آنلاین ما خوش آمدید</h1>
                 <p>بهترین محصولات را با بهترین قیمت از ما بخواهید</p>
-                <button class="cta-btn" onclick="showPage('products')">مشاهده محصولات</button>
+            </div>
+            
+            <!-- Products Section on Home Page -->
+            <div class="products-section">
+                <div class="products-header">
+                    <h2>محصولات</h2>
+                    <div class="products-filters">
+                        <input type="text" id="homeSearchInput" placeholder="جستجو در محصولات..." class="search-input">
+                        <select id="homeCategoryFilter" class="category-select">
+                            <option value="">همه دسته‌بندی‌ها</option>
+                            <option value="electronics">الکترونیک</option>
+                            <option value="clothing">پوشاک</option>
+                            <option value="books">کتاب</option>
+                            <option value="sports">ورزشی</option>
+                            <option value="home">خانه و آشپزخانه</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="homeProductsGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div class="pagination" id="homePagination">
+                    <!-- Pagination will be generated here -->
+                </div>
             </div>
         </div>
 

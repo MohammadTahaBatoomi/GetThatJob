@@ -27,6 +27,7 @@ function initializeApp() {
     generateProducts();
     setupEventListeners();
     showPage('home');
+    renderHomeProducts();
     updateUI();
 }
 
@@ -198,6 +199,20 @@ function renderProducts() {
     renderPagination();
 }
 
+function renderHomeProducts() {
+    const productsGrid = document.getElementById('homeProductsGrid');
+    const paginatedProducts = getPaginatedProducts();
+    
+    productsGrid.innerHTML = '';
+    
+    paginatedProducts.forEach(product => {
+        const productCard = createProductCard(product);
+        productsGrid.appendChild(productCard);
+    });
+    
+    renderHomePagination();
+}
+
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
@@ -270,9 +285,59 @@ function renderPagination() {
     }
 }
 
+function renderHomePagination() {
+    const pagination = document.getElementById('homePagination');
+    const filtered = getFilteredProducts();
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    
+    pagination.innerHTML = '';
+    
+    if (totalPages <= 1) return;
+    
+    // Previous button
+    if (currentPage > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'pagination-btn';
+        prevBtn.textContent = 'قبلی';
+        prevBtn.onclick = () => changeHomePage(currentPage - 1);
+        pagination.appendChild(prevBtn);
+    }
+    
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+            pageBtn.textContent = i;
+            pageBtn.onclick = () => changeHomePage(i);
+            pagination.appendChild(pageBtn);
+        } else if (i === currentPage - 3 || i === currentPage + 3) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.style.padding = '0.5rem';
+            pagination.appendChild(ellipsis);
+        }
+    }
+    
+    // Next button
+    if (currentPage < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'pagination-btn';
+        nextBtn.textContent = 'بعدی';
+        nextBtn.onclick = () => changeHomePage(currentPage + 1);
+        pagination.appendChild(nextBtn);
+    }
+}
+
 function changePage(page) {
     currentPage = page;
     renderProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changeHomePage(page) {
+    currentPage = page;
+    renderHomeProducts();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -526,6 +591,9 @@ function showPage(pageName) {
     
     // Load page-specific content
     switch (pageName) {
+        case 'home':
+            renderHomeProducts();
+            break;
         case 'products':
             renderProducts();
             break;
@@ -577,7 +645,20 @@ function setupEventListeners() {
     document.getElementById('loginForm').addEventListener('submit', handleLogin);
     document.getElementById('registerForm').addEventListener('submit', handleRegister);
     
-    // Search and filters
+    // Search and filters for home page
+    document.getElementById('homeSearchInput').addEventListener('input', (e) => {
+        currentFilter = e.target.value;
+        currentPage = 1;
+        renderHomeProducts();
+    });
+    
+    document.getElementById('homeCategoryFilter').addEventListener('change', (e) => {
+        currentCategory = e.target.value;
+        currentPage = 1;
+        renderHomeProducts();
+    });
+    
+    // Search and filters for products page
     document.getElementById('searchInput').addEventListener('input', (e) => {
         currentFilter = e.target.value;
         currentPage = 1;
