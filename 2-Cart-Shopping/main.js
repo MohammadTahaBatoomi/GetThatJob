@@ -201,17 +201,17 @@ function renderProducts() {
 
 function renderHomeProducts() {
     const productsGrid = document.getElementById('homeProductsGrid');
-    const paginatedProducts = getPaginatedProducts();
-    
+    const allProducts = getFilteredProducts(); 
+    const homeProducts = allProducts.slice(0, 6); 
+
     productsGrid.innerHTML = '';
-    
-    paginatedProducts.forEach(product => {
+
+    homeProducts.forEach(product => {
         const productCard = createProductCard(product);
         productsGrid.appendChild(productCard);
     });
-    
-    renderHomePagination();
 }
+
 
 function createProductCard(product) {
     const card = document.createElement('div');

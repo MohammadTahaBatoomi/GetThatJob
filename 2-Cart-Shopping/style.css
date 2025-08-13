@@ -11,7 +11,7 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --success-color: #10b981;
     --error-color: #ef4444;
-    --warning-color: #f59e0b;
+    --warning-color: #ffbe4d;
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -83,13 +83,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px;
 }
 
 .nav-logo h2 {
     color: var(--primary-color);
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .nav-menu {
@@ -147,7 +147,7 @@ body {
 
 .auth-btn:hover {
     background-color: #1d4ed8;
-    transform: translateY(-1px);
+    transform: translateY(-0.5px);
 }
 
 .user-greeting {
@@ -163,6 +163,7 @@ body {
     border-radius: var(--border-radius-md);
     font-weight: 500;
     cursor: pointer;
+    margin-right: 10px;
     transition: all var(--transition-fast);
 }
 
@@ -290,7 +291,7 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 10px 25px var(--shadow-color);
 }
 
@@ -569,7 +570,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
     background-color: var(--surface-color);
-    color: var(--text-primary);
+    color: white;
 }
 
 .apply-btn {
@@ -597,7 +598,6 @@ body {
     align-items: center;
     padding: var(--spacing-lg) 0;
     border-top: 1px solid var(--border-color);
-    margin-bottom: var(--spacing-xl);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -606,7 +606,7 @@ body {
 .checkout-btn,
 .invoice-btn {
     width: 100%;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border: none;
     border-radius: var(--border-radius-md);
     font-weight: 600;
@@ -630,7 +630,7 @@ body {
 }
 
 .invoice-btn:hover {
-    background-color: #d97706;
+    background-color: #cf9654;
 }
 
 /* Related Products */
