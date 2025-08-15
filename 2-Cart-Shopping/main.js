@@ -669,7 +669,7 @@ function renderCart() {
                        onblur="updateCartQuantity(${item.id}, parseInt(this.value) || 1)" min="1">
                 <button class="quantity-btn" onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})">+</button>
             </div>
-            <div class="cart-item-price">${formatPrice(item.price * item.quantity)} تومان</div>
+            <div class="cart-item-price">${formatPrice(item.price * item.quantity)} $</div>
             <button class="remove-item-btn" onclick="removeFromCart(${item.id})">×</button>
         `;
         cartItems.appendChild(cartItem);

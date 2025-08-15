@@ -89,7 +89,7 @@ body {
 .nav-logo h2 {
     color: var(--primary-color);
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .nav-menu {
@@ -175,8 +175,8 @@ body {
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-xl) var(--spacing-lg);
-    min-height: calc(100vh - 70px);
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: 100vh;
 }
 
 /* Pages */
@@ -389,8 +389,8 @@ body {
 .cart-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-2xl);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .cart-section {
@@ -536,7 +536,7 @@ body {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
 }
 
 .summary-details {
@@ -547,9 +547,6 @@ body {
 }
 
 .summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
@@ -606,7 +603,6 @@ body {
     align-items: center;
     padding: var(--spacing-lg) 0;
     border-top: 1px solid var(--border-color);
-    margin-bottom: var(--spacing-xl);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -615,13 +611,13 @@ body {
 .checkout-btn,
 .invoice-btn {
     width: 100%;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border: none;
     border-radius: var(--border-radius-md);
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-fast);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .checkout-btn {
@@ -823,7 +819,7 @@ body {
 @media (max-width: 1024px) {
     .cart-container {
         grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-md);
     }
     
     .product-detail-content {
@@ -842,7 +838,7 @@ body {
     }
     
     .main-content {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-md);
     }
     
     .hero-section h1 {
