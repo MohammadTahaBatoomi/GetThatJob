@@ -139,6 +139,7 @@ body {
     color: white;
     border: none;
     padding: var(--spacing-sm) var(--spacing-lg);
+    margin: 5px;
     border-radius: var(--border-radius-md);
     font-weight: 500;
     cursor: pointer;
@@ -147,7 +148,6 @@ body {
 
 .auth-btn:hover {
     background-color: #1d4ed8;
-    transform: translateY(-0.5px);
 }
 
 .user-greeting {
