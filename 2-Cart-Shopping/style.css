@@ -58,12 +58,12 @@ html {
 }
 
 body {
-    font-family: 'Vazirmatn', sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: var(--background-color);
     color: var(--text-primary);
     line-height: 1.6;
     transition: background-color var(--transition-normal), color var(--transition-normal);
-    direction: rtl;
+    direction: ltr;
 }
 
 /* Navigation */

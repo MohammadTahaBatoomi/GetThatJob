@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>فروشگاه آنلاین</title>
+    <title>Online Store</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,13 +11,13 @@
     <nav class="navbar">
       <div class="nav-container">
         <div class="nav-logo">
-          <h2>فروشگاه آنلاین</h2>
+          <h2>Online Store</h2>
         </div>
 
         <div class="nav-menu">
-          <a href="#" class="nav-link active" data-page="home">خانه</a>
-          <a href="#" class="nav-link" data-page="products">محصولات</a>
-          <a href="#" class="nav-link" data-page="cart">سبد خرید</a>
+          <a href="#" class="nav-link active" data-page="home">Home</a>
+          <a href="#" class="nav-link" data-page="products">Products</a>
+          <a href="#" class="nav-link" data-page="cart">Cart</a>
         </div>
 
         <div class="nav-actions">
@@ -27,14 +27,14 @@
 
           <div class="auth-section" id="authSection">
             <!-- Login/Register buttons will be shown here when not logged in -->
-            <button class="auth-btn" id="loginBtn">ورود</button>
-            <button class="auth-btn" id="registerBtn">ثبت نام</button>
+            <button class="auth-btn" id="loginBtn">Login</button>
+            <button class="auth-btn" id="registerBtn">Register</button>
           </div>
 
           <div class="user-section" id="userSection" style="display: none">
             <!-- User info will be shown here when logged in -->
-            <span class="user-greeting" id="userGreeting">سلام کاربر</span>
-            <button class="logout-btn" id="logoutBtn">خروج</button>
+            <span class="user-greeting" id="userGreeting">Hello User</span>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
           </div>
         </div>
       </div>
@@ -45,8 +45,8 @@
       <!-- Home Page -->
       <div class="page active" id="homePage">
         <div class="hero-section">
-          <h1>به فروشگاه آنلاین ما خوش آمدید</h1>
-          <p>بهترین محصولات را با بهترین قیمت از ما بخواهید</p>
+          <h1>Welcome to Our Online Store</h1>
+          <p>Get the best products at the best prices</p>
         </div>
 
         <!-- Products Section on Home Page -->
@@ -64,21 +64,21 @@
       <!-- Products Page -->
       <div class="page" id="productsPage">
         <div class="products-header">
-          <h2>محصولات</h2>
+          <h2>Products</h2>
           <div class="products-filters">
             <input
               type="text"
               id="searchInput"
-              placeholder="جستجو در محصولات..."
+              placeholder="Search products..."
               class="search-input"
             />
             <select id="categoryFilter" class="category-select">
-              <option value="">همه دسته‌بندی‌ها</option>
-              <option value="electronics">الکترونیک</option>
-              <option value="clothing">پوشاک</option>
-              <option value="books">کتاب</option>
-              <option value="sports">ورزشی</option>
-              <option value="home">خانه و آشپزخانه</option>
+              <option value="">All Categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="clothing">Clothing</option>
+              <option value="books">Books</option>
+              <option value="sports">Sports</option>
+              <option value="home">Home & Kitchen</option>
             </select>
           </div>
         </div>
@@ -97,8 +97,8 @@
         <div class="cart-container">
           <div class="cart-section">
             <div class="cart-header">
-              <h2>سبد خرید</h2>
-              <span class="item-count" id="cartItemCount">0 آیتم</span>
+              <h2>Shopping Cart</h2>
+              <span class="item-count" id="cartItemCount">0 items</span>
             </div>
 
             <div class="cart-items" id="cartItems">
@@ -107,39 +107,39 @@
 
             <div class="cart-footer">
               <a href="#" class="back-link" onclick="showPage('products')"
-                >← بازگشت به فروشگاه</a
+                >← Back to Store</a
               >
             </div>
           </div>
 
           <div class="summary-section">
-            <h3>خلاصه سفارش</h3>
+            <h3>Order Summary</h3>
 
             <div class="summary-details">
               <div class="summary-row">
-                <span>تعداد آیتم‌ها</span>
+                <span>Number of Items</span>
                 <span id="summaryItemCount">0</span>
               </div>
 
               <div class="summary-row">
-                <span>هزینه ارسال</span>
+                <span>Shipping Cost</span>
                 <div class="shipping-dropdown">
                   <select id="shippingSelect">
-                    <option value="5">ارسال استاندارد - ۵,۰۰۰ تومان</option>
-                    <option value="10">ارسال سریع - ۱۰,۰۰۰ تومان</option>
+                    <option value="5">Standard Shipping - $5</option>
+                    <option value="10">Express Shipping - $10</option>
                   </select>
                 </div>
               </div>
 
               <div class="summary-row">
-                <span>کد تخفیف</span>
+                <span>Discount Code</span>
                 <div class="code-input">
                   <input
                     type="text"
                     id="discountCode"
-                    placeholder="کد تخفیف خود را وارد کنید"
+                    placeholder="Enter your discount code"
                   />
-                  <button class="apply-btn" id="applyDiscountBtn">اعمال</button>
+                  <button class="apply-btn" id="applyDiscountBtn">Apply</button>
                 </div>
               </div>
 
@@ -148,26 +148,26 @@
                 id="discountRow"
                 style="display: none"
               >
-                <span>تخفیف اعمال شده</span>
-                <span id="discountAmount">۰ تومان</span>
+                <span>Applied Discount</span>
+                <span id="discountAmount">$0</span>
               </div>
             </div>
 
             <div class="total-row">
-              <span>مجموع قابل پرداخت</span>
-              <span id="totalPrice">۰ تومان</span>
+              <span>Total Payable</span>
+              <span id="totalPrice">$0</span>
             </div>
 
-            <button class="checkout-btn" id="checkoutBtn">پرداخت</button>
+            <button class="checkout-btn" id="checkoutBtn">Checkout</button>
             <button class="invoice-btn" id="invoiceBtn">
-              دریافت فاکتور PDF
+              Download PDF Invoice
             </button>
           </div>
         </div>
 
         <!-- Related Products Section -->
         <div class="related-products">
-          <h3>محصولات مرتبط</h3>
+          <h3>Related Products</h3>
           <div class="related-products-grid" id="relatedProductsGrid">
             <!-- Related products will be loaded here -->
           </div>
@@ -179,21 +179,21 @@
     <div class="modal" id="loginModal">
       <div class="modal-content">
         <div class="modal-header">
-          <h3>ورود به حساب کاربری</h3>
+          <h3>Login to Account</h3>
           <button class="close-btn" onclick="closeModal('loginModal')">
             &times;
           </button>
         </div>
         <form id="loginForm" class="auth-form">
           <div class="form-group">
-            <label for="loginUsername">نام کاربری</label>
+            <label for="loginUsername">Username</label>
             <input type="text" id="loginUsername" required />
           </div>
           <div class="form-group">
-            <label for="loginPassword">رمز عبور</label>
+            <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" required />
           </div>
-          <button type="submit" class="submit-btn">ورود</button>
+          <button type="submit" class="submit-btn">Login</button>
         </form>
       </div>
     </div>
@@ -201,29 +201,29 @@
     <div class="modal" id="registerModal">
       <div class="modal-content">
         <div class="modal-header">
-          <h3>ثبت نام</h3>
+          <h3>Register</h3>
           <button class="close-btn" onclick="closeModal('registerModal')">
             &times;
           </button>
         </div>
         <form id="registerForm" class="auth-form">
           <div class="form-group">
-            <label for="registerFirstName">نام</label>
+            <label for="registerFirstName">First Name</label>
             <input type="text" id="registerFirstName" required />
           </div>
           <div class="form-group">
-            <label for="registerLastName">نام خانوادگی</label>
+            <label for="registerLastName">Last Name</label>
             <input type="text" id="registerLastName" required />
           </div>
           <div class="form-group">
-            <label for="registerUsername">نام کاربری</label>
+            <label for="registerUsername">Username</label>
             <input type="text" id="registerUsername" required />
           </div>
           <div class="form-group">
-            <label for="registerPassword">رمز عبور</label>
+            <label for="registerPassword">Password</label>
             <input type="password" id="registerPassword" required />
           </div>
-          <button type="submit" class="submit-btn">ثبت نام</button>
+          <button type="submit" class="submit-btn">Register</button>
         </form>
       </div>
     </div>
@@ -232,7 +232,7 @@
     <div class="modal" id="productModal">
       <div class="modal-content product-modal">
         <div class="modal-header">
-          <h3 id="modalProductTitle">جزئیات محصول</h3>
+          <h3 id="modalProductTitle">Product Details</h3>
           <button class="close-btn" onclick="closeModal('productModal')">
             &times;
           </button>

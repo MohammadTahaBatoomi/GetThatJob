@@ -10,10 +10,10 @@ let appliedDiscount = null;
 
 // Discount Codes
 const discountCodes = {
-    'SAVE10': { percentage: 10, description: '۱۰٪ تخفیف' },
-    'SAVE20': { percentage: 20, description: '۲۰٪ تخفیف' },
-    'SAVE30': { percentage: 30, description: '۳۰٪ تخفیف' },
-    'WELCOME': { percentage: 15, description: '۱۵٪ تخفیف برای کاربران جدید' }
+    'SAVE10': { percentage: 10, description: '10% Discount' },
+    'SAVE20': { percentage: 20, description: '20% Discount' },
+    'SAVE30': { percentage: 30, description: '30% Discount' },
+    'WELCOME': { percentage: 15, description: '15% Discount for New Users' }
 };
 
 // Initialize the application
@@ -94,7 +94,7 @@ function registerUser(userData) {
     
     // Check if username already exists
     if (users.find(user => user.username === userData.username)) {
-        throw new Error('نام کاربری قبلاً استفاده شده است');
+        throw new Error('Username already exists');
     }
     
     const newUser = {
@@ -117,7 +117,7 @@ function loginUser(username, password) {
     const user = users.find(u => u.username === username && u.password === password);
     
     if (!user) {
-        throw new Error('نام کاربری یا رمز عبور اشتباه است');
+        throw new Error('Invalid username or password');
     }
     
     return user;
@@ -133,7 +133,7 @@ function logoutUser() {
     // Clear cart display
     const cartItems = document.getElementById('cartItems');
     if (cartItems) {
-        cartItems.innerHTML = '<p class="text-center">سبد خرید شما خالی است</p>';
+        cartItems.innerHTML = '<p class="text-center">Your cart is empty</p>';
     }
     
     // Reset cart summary
@@ -141,34 +141,34 @@ function logoutUser() {
     const summaryItemCount = document.getElementById('summaryItemCount');
     const totalPrice = document.getElementById('totalPrice');
     
-    if (cartItemCount) cartItemCount.textContent = '0 آیتم';
+    if (cartItemCount) cartItemCount.textContent = '0 items';
     if (summaryItemCount) summaryItemCount.textContent = '0';
-    if (totalPrice) totalPrice.textContent = '۰ تومان';
+    if (totalPrice) totalPrice.textContent = '$0';
 }
 
 // Product Management
 async function generateProducts() {
     try {
-        const response = await fetch('db.json');
+        const response = await fetch('db/db.json');
         const data = await response.json();
         products = data.products;
-        console.log('محصولات از دیتابیس بارگذاری شد:', products.length, 'محصول');
+        console.log('Products loaded from database:', products.length, 'products');
         
         // Load categories dynamically
         await loadCategories(data.categories);
     } catch (error) {
-        console.error('خطا در بارگذاری محصولات:', error);
+        console.error('Error loading products:', error);
         // Fallback to default products if database fails
         products = [
             {
                 id: 1,
-                name: "لپتاپ اپل مک‌بوک پرو",
+                name: "Apple MacBook Pro",
                 category: "electronics",
-                categoryName: "الکترونیک",
+                categoryName: "Electronics",
                 price: 85000000,
                 stock: 15,
                 image: "https://picsum.photos/300/200?random=1",
-                description: "لپتاپ قدرتمند اپل با پردازنده M2"
+                description: "Powerful Apple laptop with M2 processor"
             }
         ];
     }
@@ -196,9 +196,9 @@ async function loadCategories(categoriesData) {
             });
         }
         
-        console.log('دسته‌بندی‌ها بارگذاری شد:', categoriesData.length, 'دسته');
+        console.log('Categories loaded:', categoriesData.length, 'categories');
     } catch (error) {
-        console.error('خطا در بارگذاری دسته‌بندی‌ها:', error);
+        console.error('Error loading categories:', error);
     }
 }
 
@@ -216,10 +216,10 @@ async function addProductToDatabase(newProduct) {
         // For now, we'll just add it to the local products array
         products.push(newProduct);
         
-        console.log('محصول جدید اضافه شد:', newProduct.name);
+        console.log('New product added:', newProduct.name);
         return newProduct;
     } catch (error) {
-        console.error('خطا در اضافه کردن محصول:', error);
+        console.error('Error adding product:', error);
         throw error;
     }
 }
@@ -269,16 +269,16 @@ function getProductStats() {
 // Function to display product statistics
 function displayProductStats() {
     const stats = getProductStats();
-    console.log('📊 آمار محصولات:');
-    console.log(`📦 کل محصولات: ${stats.totalProducts}`);
-    console.log(`🏷️ کل دسته‌بندی‌ها: ${stats.totalCategories}`);
-    console.log(`💰 ارزش کل: ${formatPrice(stats.totalValue)} تومان`);
-    console.log(`⚠️ موجودی کم: ${stats.lowStock}`);
-    console.log(`❌ ناموجود: ${stats.outOfStock}`);
+    console.log('📊 Product Statistics:');
+    console.log(`📦 Total Products: ${stats.totalProducts}`);
+    console.log(`🏷️ Total Categories: ${stats.totalCategories}`);
+    console.log(`💰 Total Value: $${formatPrice(stats.totalValue)}`);
+    console.log(`⚠️ Low Stock: ${stats.lowStock}`);
+    console.log(`❌ Out of Stock: ${stats.outOfStock}`);
     
-    console.log('\n📋 بر اساس دسته‌بندی:');
+    console.log('\n📋 By Category:');
     Object.values(stats.byCategory).forEach(cat => {
-        console.log(`  ${cat.name}: ${cat.count} محصول - ${formatPrice(cat.totalValue)} تومان`);
+        console.log(`  ${cat.name}: ${cat.count} products - $${formatPrice(cat.totalValue)}`);
     });
 }
 
@@ -385,13 +385,13 @@ function createProductCard(product) {
         <div class="product-info">
             <h3 class="product-title">${product.name}</h3>
             <p class="product-category">${product.categoryName}</p>
-            <p class="product-price">${formatPrice(product.price)} تومان</p>
-            <p class="product-stock">موجودی: ${product.stock} عدد</p>
+            <p class="product-price">$${formatPrice(product.price)}</p>
+            <p class="product-stock">Stock: ${product.stock} units</p>
             <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
                     ${!currentUser ? 'disabled' : ''} 
                     ${product.stock === 0 ? 'disabled' : ''}>
-                ${!currentUser ? 'برای افزودن وارد شوید' : 
-                  product.stock === 0 ? 'ناموجود' : 'افزودن به سبد خرید'}
+                ${!currentUser ? 'Please login to add' : 
+                  product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
             </button>
         </div>
     `;
@@ -418,7 +418,7 @@ function renderPagination() {
     if (currentPage > 1) {
         const prevBtn = document.createElement('button');
         prevBtn.className = 'pagination-btn';
-        prevBtn.textContent = 'قبلی';
+        prevBtn.textContent = 'Previous';
         prevBtn.onclick = () => changePage(currentPage - 1);
         pagination.appendChild(prevBtn);
     }
@@ -443,7 +443,7 @@ function renderPagination() {
     if (currentPage < totalPages) {
         const nextBtn = document.createElement('button');
         nextBtn.className = 'pagination-btn';
-        nextBtn.textContent = 'بعدی';
+        nextBtn.textContent = 'Next';
         nextBtn.onclick = () => changePage(currentPage + 1);
         pagination.appendChild(nextBtn);
     }
@@ -482,7 +482,7 @@ function saveUserCart() {
 
 function addToCart(productId) {
     if (!currentUser) {
-        alert('لطفاً ابتدا وارد شوید');
+        alert('Please login first');
         return;
     }
     
@@ -495,7 +495,7 @@ function addToCart(productId) {
         if (existingItem.quantity < product.stock) {
             existingItem.quantity++;
         } else {
-            alert('موجودی کافی نیست');
+            alert('Not enough stock');
             return;
         }
     } else {
@@ -510,7 +510,7 @@ function addToCart(productId) {
                 quantity: 1
             });
         } else {
-            alert('محصول ناموجود است');
+            alert('Product out of stock');
             return;
         }
     }
@@ -524,7 +524,7 @@ function addToCart(productId) {
         updateCartSummary();
     }
     
-    alert('محصول به سبد خرید اضافه شد');
+    alert('Product added to cart');
 }
 
 function removeFromCart(productId) {
@@ -549,7 +549,7 @@ function updateCartQuantity(productId, newQuantity) {
     }
     
     if (newQuantity > product.stock) {
-        alert('موجودی کافی نیست');
+        alert('Not enough stock');
         return;
     }
     
@@ -570,8 +570,8 @@ function renderCart() {
     cartItems.innerHTML = '';
     
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="text-center">سبد خرید شما خالی است</p>';
-        cartItemCount.textContent = '0 آیتم';
+        cartItems.innerHTML = '<p class="text-center">Your cart is empty</p>';
+        cartItemCount.textContent = '0 items';
         summaryItemCount.textContent = '0';
         return;
     }
@@ -599,7 +599,7 @@ function renderCart() {
     });
     
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartItemCount.textContent = `${totalItems} آیتم`;
+    cartItemCount.textContent = `${totalItems} items`;
     summaryItemCount.textContent = totalItems;
 }
 
@@ -620,7 +620,7 @@ function updateCartSummary() {
     const { subtotal, shipping, total } = calculateTotal();
     const totalPrice = document.getElementById('totalPrice');
     
-    totalPrice.textContent = `${formatPrice(total)} تومان`;
+    totalPrice.textContent = `$${formatPrice(total)}`;
 }
 
 function applyDiscount() {
@@ -629,12 +629,12 @@ function applyDiscount() {
     const discountAmount = document.getElementById('discountAmount');
     
     if (!code) {
-        alert('لطفاً کد تخفیف را وارد کنید');
+        alert('Please enter a discount code');
         return;
     }
     
     if (!discountCodes[code]) {
-        alert('کد تخفیف معتبر نیست');
+        alert('Invalid discount code');
         return;
     }
     
@@ -643,10 +643,10 @@ function applyDiscount() {
     const discountValue = (subtotal * appliedDiscount.percentage) / 100;
     
     discountRow.style.display = 'flex';
-    discountAmount.textContent = `${formatPrice(discountValue)} تومان`;
+    discountAmount.textContent = `$${formatPrice(discountValue)}`;
     
     updateCartSummary();
-    alert(`کد تخفیف ${appliedDiscount.description} اعمال شد`);
+    alert(`Discount code ${appliedDiscount.description} applied`);
 }
 
 // Related Products
@@ -655,7 +655,7 @@ function renderRelatedProducts() {
     const cartCategories = [...new Set(cart.map(item => item.category))];
     
     if (cartCategories.length === 0) {
-        relatedGrid.innerHTML = '<p>محصولی در سبد خرید نیست</p>';
+        relatedGrid.innerHTML = '<p>No products in cart</p>';
         return;
     }
     
@@ -683,16 +683,16 @@ function showProductDetail(product) {
         <img src="${product.image}" alt="${product.name}" class="product-detail-image">
         <div class="product-detail-info">
             <h4>${product.name}</h4>
-            <p class="product-detail-category">دسته‌بندی: ${product.categoryName}</p>
-            <p class="product-detail-price">${formatPrice(product.price)} تومان</p>
-            <p class="product-detail-stock">موجودی: ${product.stock} عدد</p>
+            <p class="product-detail-category">Category: ${product.categoryName}</p>
+            <p class="product-detail-price">$${formatPrice(product.price)}</p>
+            <p class="product-detail-stock">Stock: ${product.stock} units</p>
             <p>${product.description}</p>
             <div class="product-detail-actions">
                 <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
                         ${!currentUser ? 'disabled' : ''} 
                         ${product.stock === 0 ? 'disabled' : ''}>
-                    ${!currentUser ? 'برای افزودن وارد شوید' : 
-                      product.stock === 0 ? 'ناموجود' : 'افزودن به سبد خرید'}
+                    ${!currentUser ? 'Please login to add' : 
+                      product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
                 </button>
             </div>
         </div>
@@ -755,7 +755,7 @@ function updateUI() {
     if (currentUser) {
         authSection.style.display = 'none';
         userSection.style.display = 'flex';
-        userGreeting.textContent = `سلام ${currentUser.firstName} ${currentUser.lastName}`;
+        userGreeting.textContent = `Hello ${currentUser.firstName} ${currentUser.lastName}`;
     } else {
         authSection.style.display = 'flex';
         userSection.style.display = 'none';
@@ -847,7 +847,7 @@ function handleLogin(e) {
         updateUI();
         closeModal('loginModal');
         document.getElementById('loginForm').reset();
-        alert('با موفقیت وارد شدید');
+        alert('Successfully logged in');
     } catch (error) {
         alert(error.message);
     }
@@ -866,7 +866,7 @@ function handleRegister(e) {
         updateUI();
         closeModal('registerModal');
         document.getElementById('registerForm').reset();
-        alert('ثبت نام با موفقیت انجام شد');
+        alert('Registration successful');
     } catch (error) {
         alert(error.message);
     }
@@ -875,17 +875,17 @@ function handleRegister(e) {
 // Checkout and Invoice
 function handleCheckout() {
     if (cart.length === 0) {
-        alert('سبد خرید شما خالی است');
+        alert('Your cart is empty');
         return;
     }
     
     const { total } = calculateTotal();
-    alert(`مجموع قابل پرداخت: ${formatPrice(total)} تومان\n\nدر حالت واقعی، کاربر به درگاه پرداخت هدایت می‌شود.`);
+    alert(`Total payable: $${formatPrice(total)}\n\nIn a real application, the user would be redirected to a payment gateway.`);
 }
 
 function generateInvoice() {
     if (cart.length === 0) {
-        alert('سبد خرید شما خالی است');
+        alert('Your cart is empty');
         return;
     }
     
@@ -893,40 +893,40 @@ function generateInvoice() {
     const discountAmount = appliedDiscount ? (subtotal * appliedDiscount.percentage) / 100 : 0;
     
     let invoiceContent = `
-        <html dir="rtl">
+        <html dir="ltr">
         <head>
             <meta charset="UTF-8">
-            <title>فاکتور خرید</title>
+            <title>Purchase Invoice</title>
             <style>
-                body { font-family: 'Vazirmatn', sans-serif; margin: 20px; }
+                body { font-family: 'Arial', sans-serif; margin: 20px; }
                 .header { text-align: center; margin-bottom: 30px; }
                 .customer-info { margin-bottom: 20px; }
                 table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-                th, td { border: 1px solid #ddd; padding: 8px; text-align: right; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
                 th { background-color: #f2f2f2; }
                 .total { font-weight: bold; }
             </style>
         </head>
         <body>
             <div class="header">
-                <h1>فاکتور خرید</h1>
-                <p>تاریخ: ${new Date().toLocaleDateString('fa-IR')}</p>
+                <h1>Purchase Invoice</h1>
+                <p>Date: ${new Date().toLocaleDateString('en-US')}</p>
             </div>
             
             <div class="customer-info">
-                <h3>اطلاعات مشتری:</h3>
-                <p>نام: ${currentUser.firstName} ${currentUser.lastName}</p>
-                <p>نام کاربری: ${currentUser.username}</p>
+                <h3>Customer Information:</h3>
+                <p>Name: ${currentUser.firstName} ${currentUser.lastName}</p>
+                <p>Username: ${currentUser.username}</p>
             </div>
             
             <table>
                 <thead>
                     <tr>
-                        <th>محصول</th>
-                        <th>دسته‌بندی</th>
-                        <th>تعداد</th>
-                        <th>قیمت واحد</th>
-                        <th>قیمت کل</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -938,8 +938,8 @@ function generateInvoice() {
                 <td>${item.name}</td>
                 <td>${item.categoryName}</td>
                 <td>${item.quantity}</td>
-                <td>${formatPrice(item.price)} تومان</td>
-                <td>${formatPrice(item.price * item.quantity)} تومان</td>
+                <td>$${formatPrice(item.price)}</td>
+                <td>$${formatPrice(item.price * item.quantity)}</td>
             </tr>
         `;
     });
@@ -949,10 +949,10 @@ function generateInvoice() {
             </table>
             
             <div class="total">
-                <p>جمع کل: ${formatPrice(subtotal)} تومان</p>
-                <p>هزینه ارسال: ${formatPrice(shipping)} تومان</p>
-                ${appliedDiscount ? `<p>تخفیف (${appliedDiscount.percentage}%): ${formatPrice(discountAmount)} تومان</p>` : ''}
-                <p>مجموع قابل پرداخت: ${formatPrice(total)} تومان</p>
+                <p>Subtotal: $${formatPrice(subtotal)}</p>
+                <p>Shipping: $${formatPrice(shipping)}</p>
+                ${appliedDiscount ? `<p>Discount (${appliedDiscount.percentage}%): $${formatPrice(discountAmount)}</p>` : ''}
+                <p>Total Payable: $${formatPrice(total)}</p>
             </div>
         </body>
         </html>
@@ -966,12 +966,12 @@ function generateInvoice() {
     a.click();
     URL.revokeObjectURL(url);
     
-    alert('فاکتور با موفقیت دانلود شد');
+    alert('Invoice downloaded successfully');
 }
 
 // Utility Functions
 function formatPrice(price) {
-    return price.toLocaleString('fa-IR');
+    return price.toLocaleString('en-US');
 }
 
 // Global functions for HTML onclick
