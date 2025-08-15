@@ -18,6 +18,17 @@ const discountCodes = {
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
+    // Clear localStorage if there are issues
+    try {
+        const testUser = localStorage.getItem('currentUser');
+        if (testUser) {
+            JSON.parse(testUser);
+        }
+    } catch (error) {
+        console.log('Clearing corrupted localStorage...');
+        localStorage.clear();
+    }
+    
     initializeApp();
 });
 
@@ -67,7 +78,14 @@ function loadUser() {
 function saveUser() {
     if (currentUser) {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        saveUserCart();
+        
+        // Also update in users array
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = users.findIndex(u => u.id === currentUser.id);
+        if (userIndex !== -1) {
+            users[userIndex] = currentUser;
+            localStorage.setItem('users', JSON.stringify(users));
+        }
     }
 }
 
@@ -111,6 +129,21 @@ function logoutUser() {
     cart = [];
     updateUI();
     showPage('home');
+    
+    // Clear cart display
+    const cartItems = document.getElementById('cartItems');
+    if (cartItems) {
+        cartItems.innerHTML = '<p class="text-center">سبد خرید شما خالی است</p>';
+    }
+    
+    // Reset cart summary
+    const cartItemCount = document.getElementById('cartItemCount');
+    const summaryItemCount = document.getElementById('summaryItemCount');
+    const totalPrice = document.getElementById('totalPrice');
+    
+    if (cartItemCount) cartItemCount.textContent = '0 آیتم';
+    if (summaryItemCount) summaryItemCount.textContent = '0';
+    if (totalPrice) totalPrice.textContent = '۰ تومان';
 }
 
 // Product Management
@@ -426,13 +459,24 @@ function changePage(page) {
 function loadUserCart() {
     if (currentUser && currentUser.cart) {
         cart = currentUser.cart;
+    } else {
+        cart = [];
     }
 }
 
 function saveUserCart() {
     if (currentUser) {
         currentUser.cart = cart;
-        saveUser();
+        // Save to localStorage immediately
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        
+        // Also save to users array
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const userIndex = users.findIndex(u => u.id === currentUser.id);
+        if (userIndex !== -1) {
+            users[userIndex] = currentUser;
+            localStorage.setItem('users', JSON.stringify(users));
+        }
     }
 }
 
@@ -473,6 +517,13 @@ function addToCart(productId) {
     
     saveUserCart();
     updateUI();
+    
+    // Update cart display if on cart page
+    if (document.getElementById('cartPage').classList.contains('active')) {
+        renderCart();
+        updateCartSummary();
+    }
+    
     alert('محصول به سبد خرید اضافه شد');
 }
 
@@ -480,6 +531,10 @@ function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     saveUserCart();
     updateUI();
+    
+    // Update cart display immediately
+    renderCart();
+    updateCartSummary();
 }
 
 function updateCartQuantity(productId, newQuantity) {
@@ -501,6 +556,10 @@ function updateCartQuantity(productId, newQuantity) {
     item.quantity = newQuantity;
     saveUserCart();
     updateUI();
+    
+    // Update cart display immediately
+    renderCart();
+    updateCartSummary();
 }
 
 function renderCart() {
@@ -529,7 +588,8 @@ function renderCart() {
             <div class="quantity-controls">
                 <button class="quantity-btn" onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})">-</button>
                 <input type="number" class="quantity-input" value="${item.quantity}" 
-                       onchange="updateCartQuantity(${item.id}, parseInt(this.value))" min="1">
+                       onchange="updateCartQuantity(${item.id}, parseInt(this.value) || 1)" 
+                       onblur="updateCartQuantity(${item.id}, parseInt(this.value) || 1)" min="1">
                 <button class="quantity-btn" onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})">+</button>
             </div>
             <div class="cart-item-price">${formatPrice(item.price * item.quantity)} تومان</div>
@@ -681,6 +741,7 @@ function showPage(pageName) {
         case 'cart':
             renderCart();
             renderRelatedProducts();
+            updateCartSummary();
             break;
     }
 }
@@ -700,7 +761,13 @@ function updateUI() {
         userSection.style.display = 'none';
     }
     
+    // Update cart summary and display
     updateCartSummary();
+    
+    // Update cart display if on cart page
+    if (document.getElementById('cartPage').classList.contains('active')) {
+        renderCart();
+    }
 }
 
 // Event Listeners
