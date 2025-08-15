@@ -143,30 +143,25 @@ async function generateProducts() {
 
 async function loadCategories(categoriesData) {
     try {
-        // Update category select options dynamically
-        const categorySelects = [
-            document.getElementById('homeCategoryFilter'),
-            document.getElementById('categoryFilter')
-        ];
+        // Update category select options dynamically (only for products page)
+        const categorySelect = document.getElementById('categoryFilter');
         
-        categorySelects.forEach(select => {
-            if (select) {
-                // Clear existing options except the first one
-                const firstOption = select.querySelector('option[value=""]');
-                select.innerHTML = '';
-                if (firstOption) {
-                    select.appendChild(firstOption);
-                }
-                
-                // Add new category options
-                categoriesData.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    select.appendChild(option);
-                });
+        if (categorySelect) {
+            // Clear existing options except the first one
+            const firstOption = categorySelect.querySelector('option[value=""]');
+            categorySelect.innerHTML = '';
+            if (firstOption) {
+                categorySelect.appendChild(firstOption);
             }
-        });
+            
+            // Add new category options
+            categoriesData.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+                categorySelect.appendChild(option);
+            });
+        }
         
         console.log('دسته‌بندی‌ها بارگذاری شد:', categoriesData.length, 'دسته');
     } catch (error) {
@@ -331,16 +326,32 @@ function renderProducts() {
 
 function renderHomeProducts() {
     const productsGrid = document.getElementById('homeProductsGrid');
-    const paginatedProducts = getPaginatedProducts();
+    
+    // فقط 6 محصول اول را نمایش بده
+    const homeProducts = products.slice(0, 6);
     
     productsGrid.innerHTML = '';
     
-    paginatedProducts.forEach(product => {
+    homeProducts.forEach(product => {
         const productCard = createProductCard(product);
         productsGrid.appendChild(productCard);
     });
     
-    renderHomePagination();
+    // حذف pagination از صفحه خانه
+    const homePagination = document.getElementById('homePagination');
+    if (homePagination) {
+        homePagination.innerHTML = '';
+        
+        // اضافه کردن دکمه "مشاهده همه محصولات"
+        const viewAllButton = document.createElement('div');
+        viewAllButton.className = 'view-all-container';
+        viewAllButton.innerHTML = `
+            <button class="view-all-btn" onclick="showPage('products')">
+                مشاهده همه محصولات (${products.length} محصول)
+            </button>
+        `;
+        homePagination.appendChild(viewAllButton);
+    }
 }
 
 function createProductCard(product) {
@@ -415,59 +426,9 @@ function renderPagination() {
     }
 }
 
-function renderHomePagination() {
-    const pagination = document.getElementById('homePagination');
-    const filtered = getFilteredProducts();
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    
-    pagination.innerHTML = '';
-    
-    if (totalPages <= 1) return;
-    
-    // Previous button
-    if (currentPage > 1) {
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'pagination-btn';
-        prevBtn.textContent = 'قبلی';
-        prevBtn.onclick = () => changeHomePage(currentPage - 1);
-        pagination.appendChild(prevBtn);
-    }
-    
-    // Page numbers
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
-            const pageBtn = document.createElement('button');
-            pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
-            pageBtn.textContent = i;
-            pageBtn.onclick = () => changeHomePage(i);
-            pagination.appendChild(pageBtn);
-        } else if (i === currentPage - 3 || i === currentPage + 3) {
-            const ellipsis = document.createElement('span');
-            ellipsis.textContent = '...';
-            ellipsis.style.padding = '0.5rem';
-            pagination.appendChild(ellipsis);
-        }
-    }
-    
-    // Next button
-    if (currentPage < totalPages) {
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'pagination-btn';
-        nextBtn.textContent = 'بعدی';
-        nextBtn.onclick = () => changeHomePage(currentPage + 1);
-        pagination.appendChild(nextBtn);
-    }
-}
-
 function changePage(page) {
     currentPage = page;
     renderProducts();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function changeHomePage(page) {
-    currentPage = page;
-    renderHomeProducts();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -775,18 +736,7 @@ function setupEventListeners() {
     document.getElementById('loginForm').addEventListener('submit', handleLogin);
     document.getElementById('registerForm').addEventListener('submit', handleRegister);
     
-    // Search and filters for home page
-    document.getElementById('homeSearchInput').addEventListener('input', (e) => {
-        currentFilter = e.target.value;
-        currentPage = 1;
-        renderHomeProducts();
-    });
-    
-    document.getElementById('homeCategoryFilter').addEventListener('change', (e) => {
-        currentCategory = e.target.value;
-        currentPage = 1;
-        renderHomeProducts();
-    });
+
     
     // Search and filters for products page
     document.getElementById('searchInput').addEventListener('input', (e) => {
