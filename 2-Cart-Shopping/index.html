@@ -1,240 +1,268 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>فروشگاه آنلاین</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>فروشگاه آنلاین</h2>
-            </div>
-            
-            <div class="nav-menu">
-                <a href="#" class="nav-link active" data-page="home">خانه</a>
-                <a href="#" class="nav-link" data-page="products">محصولات</a>
-                <a href="#" class="nav-link" data-page="cart">سبد خرید</a>
-            </div>
-            
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                
-                <div class="auth-section" id="authSection">
-                    <!-- Login/Register buttons will be shown here when not logged in -->
-                    <button class="auth-btn" id="loginBtn">ورود</button>
-                    <button class="auth-btn" id="registerBtn">ثبت نام</button>
-                </div>
-                
-                <div class="user-section" id="userSection" style="display: none;">
-                    <!-- User info will be shown here when logged in -->
-                    <span class="user-greeting" id="userGreeting">سلام کاربر</span>
-                    <button class="logout-btn" id="logoutBtn">خروج</button>
-                </div>
-            </div>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h2>فروشگاه آنلاین</h2>
         </div>
+
+        <div class="nav-menu">
+          <a href="#" class="nav-link active" data-page="home">خانه</a>
+          <a href="#" class="nav-link" data-page="products">محصولات</a>
+          <a href="#" class="nav-link" data-page="cart">سبد خرید</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <div class="auth-section" id="authSection">
+            <!-- Login/Register buttons will be shown here when not logged in -->
+            <button class="auth-btn" id="loginBtn">ورود</button>
+            <button class="auth-btn" id="registerBtn">ثبت نام</button>
+          </div>
+
+          <div class="user-section" id="userSection" style="display: none">
+            <!-- User info will be shown here when logged in -->
+            <span class="user-greeting" id="userGreeting">سلام کاربر</span>
+            <button class="logout-btn" id="logoutBtn">خروج</button>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Home Page -->
-        <div class="page active" id="homePage">
-            <div class="hero-section">
-                <h1>به فروشگاه آنلاین ما خوش آمدید</h1>
-                <p>بهترین محصولات را با بهترین قیمت از ما بخواهید</p>
-            </div>
-            
-            <!-- Products Section on Home Page -->
-            <div class="products-section">
-                <div class="products-header">
-                    <h2>محصولات</h2>
-                    <div class="products-filters">
-                        <input type="text" id="homeSearchInput" placeholder="جستجو در محصولات..." class="search-input">
-                        <select id="homeCategoryFilter" class="category-select">
-                            <option value="">همه دسته‌بندی‌ها</option>
-                            <option value="electronics">الکترونیک</option>
-                            <option value="clothing">پوشاک</option>
-                            <option value="books">کتاب</option>
-                            <option value="sports">ورزشی</option>
-                            <option value="home">خانه و آشپزخانه</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="products-grid" id="homeProductsGrid">
-                    <!-- Products will be loaded here -->
-                </div>
-                
-                <div class="pagination" id="homePagination">
-                    <!-- Pagination will be generated here -->
-                </div>
-            </div>
+      <!-- Home Page -->
+      <div class="page active" id="homePage">
+        <div class="hero-section">
+          <h1>به فروشگاه آنلاین ما خوش آمدید</h1>
+          <p>بهترین محصولات را با بهترین قیمت از ما بخواهید</p>
         </div>
 
-        <!-- Products Page -->
-        <div class="page" id="productsPage">
-            <div class="products-header">
-                <h2>محصولات</h2>
-                <div class="products-filters">
-                    <input type="text" id="searchInput" placeholder="جستجو در محصولات..." class="search-input">
-                    <select id="categoryFilter" class="category-select">
-                        <option value="">همه دسته‌بندی‌ها</option>
-                        <option value="electronics">الکترونیک</option>
-                        <option value="clothing">پوشاک</option>
-                        <option value="books">کتاب</option>
-                        <option value="sports">ورزشی</option>
-                        <option value="home">خانه و آشپزخانه</option>
-                    </select>
-                </div>
+        <!-- Products Section on Home Page -->
+        <div class="products-section">
+          <div class="products-header">
+            <h2>محصولات</h2>
+            <div class="products-filters">
+              <input
+                type="text"
+                id="homeSearchInput"
+                placeholder="جستجو در محصولات..."
+                class="search-input"
+              />
+              <select id="homeCategoryFilter" class="category-select">
+                <option value="">همه دسته‌بندی‌ها</option>
+                <option value="electronics">الکترونیک</option>
+                <option value="clothing">پوشاک</option>
+                <option value="books">کتاب</option>
+                <option value="sports">ورزشی</option>
+                <option value="home">خانه و آشپزخانه</option>
+              </select>
             </div>
-            
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here -->
-            </div>
-            
-            <div class="pagination" id="pagination">
-                <!-- Pagination will be generated here -->
-            </div>
+          </div>
+
+          <div class="products-grid" id="homeProductsGrid">
+            <!-- Products will be loaded here -->
+          </div>
+
+          <div class="pagination" id="homePagination">
+            <!-- Pagination will be generated here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Page -->
+      <div class="page" id="productsPage">
+        <div class="products-header">
+          <h2>محصولات</h2>
+          <div class="products-filters">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="جستجو در محصولات..."
+              class="search-input"
+            />
+            <select id="categoryFilter" class="category-select">
+              <option value="">همه دسته‌بندی‌ها</option>
+              <option value="electronics">الکترونیک</option>
+              <option value="clothing">پوشاک</option>
+              <option value="books">کتاب</option>
+              <option value="sports">ورزشی</option>
+              <option value="home">خانه و آشپزخانه</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Cart Page -->
-        <div class="page" id="cartPage">
-            <div class="cart-container">
-                <div class="cart-section">
-                    <div class="cart-header">
-                        <h2>سبد خرید</h2>
-                        <span class="item-count" id="cartItemCount">0 آیتم</span>
-                    </div>
-                    
-                    <div class="cart-items" id="cartItems">
-                        <!-- Cart items will be loaded here -->
-                    </div>
-                    
-                    <div class="cart-footer">
-                        <a href="#" class="back-link" onclick="showPage('products')">← بازگشت به فروشگاه</a>
-                    </div>
-                </div>
-                
-                <div class="summary-section">
-                    <h3>خلاصه سفارش</h3>
-                    
-                    <div class="summary-details">
-                        <div class="summary-row">
-                            <span>تعداد آیتم‌ها</span>
-                            <span id="summaryItemCount">0</span>
-                        </div>
-                        
-                        <div class="summary-row">
-                            <span>هزینه ارسال</span>
-                            <div class="shipping-dropdown">
-                                <select id="shippingSelect">
-                                    <option value="5">ارسال استاندارد - ۵,۰۰۰ تومان</option>
-                                    <option value="10">ارسال سریع - ۱۰,۰۰۰ تومان</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-row">
-                            <span>کد تخفیف</span>
-                            <div class="code-input">
-                                <input type="text" id="discountCode" placeholder="کد تخفیف خود را وارد کنید">
-                                <button class="apply-btn" id="applyDiscountBtn">اعمال</button>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-row discount-row" id="discountRow" style="display: none;">
-                            <span>تخفیف اعمال شده</span>
-                            <span id="discountAmount">۰ تومان</span>
-                        </div>
-                    </div>
-                    
-                    <div class="total-row">
-                        <span>مجموع قابل پرداخت</span>
-                        <span id="totalPrice">۰ تومان</span>
-                    </div>
-                    
-                    <button class="checkout-btn" id="checkoutBtn">پرداخت</button>
-                    <button class="invoice-btn" id="invoiceBtn">دریافت فاکتور PDF</button>
-                </div>
-            </div>
-            
-            <!-- Related Products Section -->
-            <div class="related-products">
-                <h3>محصولات مرتبط</h3>
-                <div class="related-products-grid" id="relatedProductsGrid">
-                    <!-- Related products will be loaded here -->
-                </div>
-            </div>
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here -->
         </div>
+
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be generated here -->
+        </div>
+      </div>
+
+      <!-- Cart Page -->
+      <div class="page" id="cartPage">
+        <div class="cart-container">
+          <div class="cart-section">
+            <div class="cart-header">
+              <h2>سبد خرید</h2>
+              <span class="item-count" id="cartItemCount">0 آیتم</span>
+            </div>
+
+            <div class="cart-items" id="cartItems">
+              <!-- Cart items will be loaded here -->
+            </div>
+
+            <div class="cart-footer">
+              <a href="#" class="back-link" onclick="showPage('products')"
+                >← بازگشت به فروشگاه</a
+              >
+            </div>
+          </div>
+
+          <div class="summary-section">
+            <h3>خلاصه سفارش</h3>
+
+            <div class="summary-details">
+              <div class="summary-row">
+                <span>تعداد آیتم‌ها</span>
+                <span id="summaryItemCount">0</span>
+              </div>
+
+              <div class="summary-row">
+                <span>هزینه ارسال</span>
+                <div class="shipping-dropdown">
+                  <select id="shippingSelect">
+                    <option value="5">ارسال استاندارد - ۵,۰۰۰ تومان</option>
+                    <option value="10">ارسال سریع - ۱۰,۰۰۰ تومان</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="summary-row">
+                <span>کد تخفیف</span>
+                <div class="code-input">
+                  <input
+                    type="text"
+                    id="discountCode"
+                    placeholder="کد تخفیف خود را وارد کنید"
+                  />
+                  <button class="apply-btn" id="applyDiscountBtn">اعمال</button>
+                </div>
+              </div>
+
+              <div
+                class="summary-row discount-row"
+                id="discountRow"
+                style="display: none"
+              >
+                <span>تخفیف اعمال شده</span>
+                <span id="discountAmount">۰ تومان</span>
+              </div>
+            </div>
+
+            <div class="total-row">
+              <span>مجموع قابل پرداخت</span>
+              <span id="totalPrice">۰ تومان</span>
+            </div>
+
+            <button class="checkout-btn" id="checkoutBtn">پرداخت</button>
+            <button class="invoice-btn" id="invoiceBtn">
+              دریافت فاکتور PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div class="related-products">
+          <h3>محصولات مرتبط</h3>
+          <div class="related-products-grid" id="relatedProductsGrid">
+            <!-- Related products will be loaded here -->
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Authentication Modals -->
     <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>ورود به حساب کاربری</h3>
-                <button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
-            </div>
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="loginUsername">نام کاربری</label>
-                    <input type="text" id="loginUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">رمز عبور</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="submit-btn">ورود</button>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>ورود به حساب کاربری</h3>
+          <button class="close-btn" onclick="closeModal('loginModal')">
+            &times;
+          </button>
         </div>
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="loginUsername">نام کاربری</label>
+            <input type="text" id="loginUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">رمز عبور</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="submit-btn">ورود</button>
+        </form>
+      </div>
     </div>
 
     <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>ثبت نام</h3>
-                <button class="close-btn" onclick="closeModal('registerModal')">&times;</button>
-            </div>
-            <form id="registerForm" class="auth-form">
-                <div class="form-group">
-                    <label for="registerFirstName">نام</label>
-                    <input type="text" id="registerFirstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerLastName">نام خانوادگی</label>
-                    <input type="text" id="registerLastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerUsername">نام کاربری</label>
-                    <input type="text" id="registerUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="registerPassword">رمز عبور</label>
-                    <input type="password" id="registerPassword" required>
-                </div>
-                <button type="submit" class="submit-btn">ثبت نام</button>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>ثبت نام</h3>
+          <button class="close-btn" onclick="closeModal('registerModal')">
+            &times;
+          </button>
         </div>
+        <form id="registerForm" class="auth-form">
+          <div class="form-group">
+            <label for="registerFirstName">نام</label>
+            <input type="text" id="registerFirstName" required />
+          </div>
+          <div class="form-group">
+            <label for="registerLastName">نام خانوادگی</label>
+            <input type="text" id="registerLastName" required />
+          </div>
+          <div class="form-group">
+            <label for="registerUsername">نام کاربری</label>
+            <input type="text" id="registerUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">رمز عبور</label>
+            <input type="password" id="registerPassword" required />
+          </div>
+          <button type="submit" class="submit-btn">ثبت نام</button>
+        </form>
+      </div>
     </div>
 
     <!-- Product Detail Modal -->
     <div class="modal" id="productModal">
-        <div class="modal-content product-modal">
-            <div class="modal-header">
-                <h3 id="modalProductTitle">جزئیات محصول</h3>
-                <button class="close-btn" onclick="closeModal('productModal')">&times;</button>
-            </div>
-            <div class="product-detail-content" id="productDetailContent">
-                <!-- Product details will be loaded here -->
-            </div>
+      <div class="modal-content product-modal">
+        <div class="modal-header">
+          <h3 id="modalProductTitle">جزئیات محصول</h3>
+          <button class="close-btn" onclick="closeModal('productModal')">
+            &times;
+          </button>
         </div>
+        <div class="product-detail-content" id="productDetailContent">
+          <!-- Product details will be loaded here -->
+        </div>
+      </div>
     </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

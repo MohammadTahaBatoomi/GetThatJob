@@ -21,14 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-function initializeApp() {
+async function initializeApp() {
     loadTheme();
     loadUser();
-    generateProducts();
+    await generateProducts();
     setupEventListeners();
     showPage('home');
     renderHomeProducts();
     updateUI();
+    
+    // Display product statistics in console
+    displayProductStats();
 }
 
 // Theme Management
@@ -111,65 +114,192 @@ function logoutUser() {
 }
 
 // Product Management
-function generateProducts() {
-    const categories = {
-        electronics: ['لپتاپ', 'موبایل', 'تبلت', 'هدفون', 'کیبورد', 'موس', 'مانیتور', 'پرینتر'],
-        clothing: ['پیراهن', 'شلوار', 'کت', 'کفش', 'کلاه', 'کیف', 'ساعت', 'عینک'],
-        books: ['رمان', 'کتاب علمی', 'کتاب آموزشی', 'مجله', 'کتاب کودک', 'کتاب آشپزی'],
-        sports: ['توپ فوتبال', 'توپ بسکتبال', 'کفش ورزشی', 'لباس ورزشی', 'دمبل', 'طناب'],
-        home: ['میز', 'صندلی', 'کمد', 'فرش', 'پرده', 'گلدان', 'چراغ', 'ساعت دیواری']
-    };
-    
-    const categoryNames = {
-        electronics: 'الکترونیک',
-        clothing: 'پوشاک',
-        books: 'کتاب',
-        sports: 'ورزشی',
-        home: 'خانه و آشپزخانه'
-    };
-    
-    products = [];
-    
-    Object.keys(categories).forEach(category => {
-        categories[category].forEach((productName, index) => {
-            products.push({
-                id: products.length + 1,
-                name: productName,
-                category: category,
-                categoryName: categoryNames[category],
-                price: Math.floor(Math.random() * 900000) + 100000, // 100k to 1M
-                stock: Math.floor(Math.random() * 20) + 1,
-                image: `https://picsum.photos/300/200?random=${products.length + 1}`,
-                description: `توضیحات کامل برای ${productName}`
-            });
+async function generateProducts() {
+    try {
+        const response = await fetch('db.json');
+        const data = await response.json();
+        products = data.products;
+        console.log('محصولات از دیتابیس بارگذاری شد:', products.length, 'محصول');
+        
+        // Load categories dynamically
+        await loadCategories(data.categories);
+    } catch (error) {
+        console.error('خطا در بارگذاری محصولات:', error);
+        // Fallback to default products if database fails
+        products = [
+            {
+                id: 1,
+                name: "لپتاپ اپل مک‌بوک پرو",
+                category: "electronics",
+                categoryName: "الکترونیک",
+                price: 85000000,
+                stock: 15,
+                image: "https://picsum.photos/300/200?random=1",
+                description: "لپتاپ قدرتمند اپل با پردازنده M2"
+            }
+        ];
+    }
+}
+
+async function loadCategories(categoriesData) {
+    try {
+        // Update category select options dynamically
+        const categorySelects = [
+            document.getElementById('homeCategoryFilter'),
+            document.getElementById('categoryFilter')
+        ];
+        
+        categorySelects.forEach(select => {
+            if (select) {
+                // Clear existing options except the first one
+                const firstOption = select.querySelector('option[value=""]');
+                select.innerHTML = '';
+                if (firstOption) {
+                    select.appendChild(firstOption);
+                }
+                
+                // Add new category options
+                categoriesData.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    select.appendChild(option);
+                });
+            }
         });
+        
+        console.log('دسته‌بندی‌ها بارگذاری شد:', categoriesData.length, 'دسته');
+    } catch (error) {
+        console.error('خطا در بارگذاری دسته‌بندی‌ها:', error);
+    }
+}
+
+// Function to add new product to database
+async function addProductToDatabase(newProduct) {
+    try {
+        const response = await fetch('db.json');
+        const data = await response.json();
+        
+        // Add new product with unique ID
+        newProduct.id = Math.max(...data.products.map(p => p.id)) + 1;
+        data.products.push(newProduct);
+        
+        // In a real application, you would save this back to the server
+        // For now, we'll just add it to the local products array
+        products.push(newProduct);
+        
+        console.log('محصول جدید اضافه شد:', newProduct.name);
+        return newProduct;
+    } catch (error) {
+        console.error('خطا در اضافه کردن محصول:', error);
+        throw error;
+    }
+}
+
+// Function to get products by category
+function getProductsByCategory(categoryId) {
+    return products.filter(product => product.category === categoryId);
+}
+
+// Function to search products
+function searchProducts(query) {
+    const searchTerm = query.toLowerCase();
+    return products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm) ||
+        product.categoryName.toLowerCase().includes(searchTerm)
+    );
+}
+
+// Function to get product statistics
+function getProductStats() {
+    const stats = {
+        totalProducts: products.length,
+        totalCategories: new Set(products.map(p => p.category)).size,
+        totalValue: products.reduce((sum, p) => sum + p.price, 0),
+        lowStock: products.filter(p => p.stock < 5).length,
+        outOfStock: products.filter(p => p.stock === 0).length,
+        byCategory: {}
+    };
+    
+    // Group by category
+    products.forEach(product => {
+        if (!stats.byCategory[product.category]) {
+            stats.byCategory[product.category] = {
+                name: product.categoryName,
+                count: 0,
+                totalValue: 0
+            };
+        }
+        stats.byCategory[product.category].count++;
+        stats.byCategory[product.category].totalValue += product.price;
     });
     
-    // Add more products to reach 50+
-    for (let i = 0; i < 20; i++) {
-        const category = Object.keys(categories)[Math.floor(Math.random() * Object.keys(categories).length)];
-        const productName = `محصول ${i + 1}`;
-        products.push({
-            id: products.length + 1,
-            name: productName,
-            category: category,
-            categoryName: categoryNames[category],
-            price: Math.floor(Math.random() * 900000) + 100000,
-            stock: Math.floor(Math.random() * 20) + 1,
-            image: `https://picsum.photos/300/200?random=${products.length + 1}`,
-            description: `توضیحات کامل برای ${productName}`
-        });
+    return stats;
+}
+
+// Function to display product statistics
+function displayProductStats() {
+    const stats = getProductStats();
+    console.log('📊 آمار محصولات:');
+    console.log(`📦 کل محصولات: ${stats.totalProducts}`);
+    console.log(`🏷️ کل دسته‌بندی‌ها: ${stats.totalCategories}`);
+    console.log(`💰 ارزش کل: ${formatPrice(stats.totalValue)} تومان`);
+    console.log(`⚠️ موجودی کم: ${stats.lowStock}`);
+    console.log(`❌ ناموجود: ${stats.outOfStock}`);
+    
+    console.log('\n📋 بر اساس دسته‌بندی:');
+    Object.values(stats.byCategory).forEach(cat => {
+        console.log(`  ${cat.name}: ${cat.count} محصول - ${formatPrice(cat.totalValue)} تومان`);
+    });
+}
+
+// Function to filter products by price range
+function filterProductsByPrice(minPrice, maxPrice) {
+    return products.filter(product => 
+        product.price >= minPrice && product.price <= maxPrice
+    );
+}
+
+// Function to get products in stock
+function getProductsInStock() {
+    return products.filter(product => product.stock > 0);
+}
+
+// Function to get low stock products
+function getLowStockProducts(threshold = 5) {
+    return products.filter(product => product.stock > 0 && product.stock <= threshold);
+}
+
+// Function to sort products
+function sortProducts(products, sortBy = 'name', order = 'asc') {
+    const sorted = [...products];
+    
+    switch (sortBy) {
+        case 'name':
+            sorted.sort((a, b) => order === 'asc' ? 
+                a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
+            break;
+        case 'price':
+            sorted.sort((a, b) => order === 'asc' ? a.price - b.price : b.price - a.price);
+            break;
+        case 'stock':
+            sorted.sort((a, b) => order === 'asc' ? a.stock - b.stock : b.stock - a.stock);
+            break;
+        case 'category':
+            sorted.sort((a, b) => order === 'asc' ? 
+                a.categoryName.localeCompare(b.categoryName) : b.categoryName.localeCompare(a.categoryName));
+            break;
     }
+    
+    return sorted;
 }
 
 function getFilteredProducts() {
     let filtered = products;
     
     if (currentFilter) {
-        filtered = filtered.filter(product => 
-            product.name.includes(currentFilter) || 
-            product.categoryName.includes(currentFilter)
-        );
+        filtered = searchProducts(currentFilter);
     }
     
     if (currentCategory) {
@@ -201,17 +331,17 @@ function renderProducts() {
 
 function renderHomeProducts() {
     const productsGrid = document.getElementById('homeProductsGrid');
-    const allProducts = getFilteredProducts(); 
-    const homeProducts = allProducts.slice(0, 6); 
-
+    const paginatedProducts = getPaginatedProducts();
+    
     productsGrid.innerHTML = '';
-
-    homeProducts.forEach(product => {
+    
+    paginatedProducts.forEach(product => {
         const productCard = createProductCard(product);
         productsGrid.appendChild(productCard);
     });
+    
+    renderHomePagination();
 }
-
 
 function createProductCard(product) {
     const card = document.createElement('div');
@@ -844,3 +974,14 @@ window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
 window.showProductDetail = showProductDetail;
+
+// Global functions for database operations
+window.addProductToDatabase = addProductToDatabase;
+window.getProductsByCategory = getProductsByCategory;
+window.searchProducts = searchProducts;
+window.getProductStats = getProductStats;
+window.displayProductStats = displayProductStats;
+window.filterProductsByPrice = filterProductsByPrice;
+window.getProductsInStock = getProductsInStock;
+window.getLowStockProducts = getLowStockProducts;
+window.sortProducts = sortProducts;

@@ -1,0 +1,381 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "لپتاپ اپل مک‌بوک پرو",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 85000000,
+      "stock": 15,
+      "image": "https://picsum.photos/300/200?random=1",
+      "description": "لپتاپ قدرتمند اپل با پردازنده M2، 16 گیگابایت رم و 512 گیگابایت حافظه SSD. مناسب برای کارهای حرفه‌ای و طراحی."
+    },
+    {
+      "id": 2,
+      "name": "گوشی سامسونگ Galaxy S24",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 45000000,
+      "stock": 25,
+      "image": "https://picsum.photos/300/200?random=2",
+      "description": "گوشی هوشمند سامسونگ با دوربین 108 مگاپیکسل، نمایشگر 6.2 اینچی و باتری 4000 میلی‌آمپر ساعت."
+    },
+    {
+      "id": 3,
+      "name": "تبلت اپل iPad Pro",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 35000000,
+      "stock": 12,
+      "image": "https://picsum.photos/300/200?random=3",
+      "description": "تبلت حرفه‌ای اپل با نمایشگر 12.9 اینچی، قلم Apple Pencil و پردازنده M2."
+    },
+    {
+      "id": 4,
+      "name": "هدفون Sony WH-1000XM5",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 8500000,
+      "stock": 30,
+      "image": "https://picsum.photos/300/200?random=4",
+      "description": "هدفون بی‌سیم سونی با قابلیت حذف نویز فعال و کیفیت صدای فوق‌العاده."
+    },
+    {
+      "id": 5,
+      "name": "کیبورد مکانیکال Logitech",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 3200000,
+      "stock": 40,
+      "image": "https://picsum.photos/300/200?random=5",
+      "description": "کیبورد مکانیکال لاگیتک با سوئیچ‌های Cherry MX و نورپردازی RGB."
+    },
+    {
+      "id": 6,
+      "name": "موس گیمینگ Razer",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 1800000,
+      "stock": 35,
+      "image": "https://picsum.photos/300/200?random=6",
+      "description": "موس گیمینگ رزر با سنسور 25K DPI و دکمه‌های قابل برنامه‌ریزی."
+    },
+    {
+      "id": 7,
+      "name": "مانیتور 4K LG",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 12000000,
+      "stock": 8,
+      "image": "https://picsum.photos/300/200?random=7",
+      "description": "مانیتور 27 اینچی LG با رزولوشن 4K و پشتیبانی از HDR."
+    },
+    {
+      "id": 8,
+      "name": "پرینتر HP LaserJet",
+      "category": "electronics",
+      "categoryName": "الکترونیک",
+      "price": 5500000,
+      "stock": 20,
+      "image": "https://picsum.photos/300/200?random=8",
+      "description": "پرینتر لیزری HP با سرعت چاپ بالا و کیفیت عالی."
+    },
+    {
+      "id": 9,
+      "name": "پیراهن مردانه کتان",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 450000,
+      "stock": 50,
+      "image": "https://picsum.photos/300/200?random=9",
+      "description": "پیراهن مردانه از جنس کتان طبیعی، مناسب برای استفاده روزانه و رسمی."
+    },
+    {
+      "id": 10,
+      "name": "شلوار جین Levi's",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 680000,
+      "stock": 45,
+      "image": "https://picsum.photos/300/200?random=10",
+      "description": "شلوار جین لوییز با کیفیت بالا و دوام طولانی مدت."
+    },
+    {
+      "id": 11,
+      "name": "کت رسمی مردانه",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 2800000,
+      "stock": 25,
+      "image": "https://picsum.photos/300/200?random=11",
+      "description": "کت رسمی مردانه مناسب برای جلسات کاری و مراسم رسمی."
+    },
+    {
+      "id": 12,
+      "name": "کفش ورزشی Nike",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 1200000,
+      "stock": 30,
+      "image": "https://picsum.photos/300/200?random=12",
+      "description": "کفش ورزشی نایک با تکنولوژی Air Max و راحتی فوق‌العاده."
+    },
+    {
+      "id": 13,
+      "name": "کلاه بیسبال",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 180000,
+      "stock": 60,
+      "image": "https://picsum.photos/300/200?random=13",
+      "description": "کلاه بیسبال با طراحی مدرن و محافظت از نور خورشید."
+    },
+    {
+      "id": 14,
+      "name": "کیف دستی چرمی",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 950000,
+      "stock": 20,
+      "image": "https://picsum.photos/300/200?random=14",
+      "description": "کیف دستی چرمی با کیفیت بالا و طراحی شیک."
+    },
+    {
+      "id": 15,
+      "name": "ساعت مچی Casio",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 750000,
+      "stock": 35,
+      "image": "https://picsum.photos/300/200?random=15",
+      "description": "ساعت مچی کاسیو با قابلیت‌های متنوع و طراحی مقاوم."
+    },
+    {
+      "id": 16,
+      "name": "عینک آفتابی Ray-Ban",
+      "category": "clothing",
+      "categoryName": "پوشاک",
+      "price": 1200000,
+      "stock": 25,
+      "image": "https://picsum.photos/300/200?random=16",
+      "description": "عینک آفتابی ری‌بن با لنزهای با کیفیت و محافظت کامل از UV."
+    },
+    {
+      "id": 17,
+      "name": "رمان صد سال تنهایی",
+      "category": "books",
+      "categoryName": "کتاب",
+      "price": 180000,
+      "stock": 40,
+      "image": "https://picsum.photos/300/200?random=17",
+      "description": "رمان معروف گابریل گارسیا مارکز، ترجمه فارسی با کیفیت بالا."
+    },
+    {
+      "id": 18,
+      "name": "کتاب برنامه‌نویسی JavaScript",
+      "category": "books",
+      "categoryName": "کتاب",
+      "price": 320000,
+      "stock": 30,
+      "image": "https://picsum.photos/300/200?random=18",
+      "description": "کتاب جامع آموزش JavaScript برای مبتدیان و حرفه‌ای‌ها."
+    },
+    {
+      "id": 19,
+      "name": "کتاب آشپزی ایرانی",
+      "category": "books",
+      "categoryName": "کتاب",
+      "price": 250000,
+      "stock": 35,
+      "image": "https://picsum.photos/300/200?random=19",
+      "description": "کتاب آشپزی با دستور پخت غذاهای سنتی و مدرن ایرانی."
+    },
+    {
+      "id": 20,
+      "name": "مجله علمی Nature",
+      "category": "books",
+      "categoryName": "کتاب",
+      "price": 120000,
+      "stock": 50,
+      "image": "https://picsum.photos/300/200?random=20",
+      "description": "مجله علمی Nature با آخرین اخبار و مقالات علمی."
+    },
+    {
+      "id": 21,
+      "name": "کتاب کودک قصه‌های شب",
+      "category": "books",
+      "categoryName": "کتاب",
+      "price": 95000,
+      "stock": 60,
+      "image": "https://picsum.photos/300/200?random=21",
+      "description": "مجموعه قصه‌های کودکانه با تصاویر زیبا و جذاب."
+    },
+    {
+      "id": 22,
+      "name": "توپ فوتبال Adidas",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 450000,
+      "stock": 40,
+      "image": "https://picsum.photos/300/200?random=22",
+      "description": "توپ فوتبال آدیداس با کیفیت حرفه‌ای و دوام بالا."
+    },
+    {
+      "id": 23,
+      "name": "توپ بسکتبال Spalding",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 380000,
+      "stock": 35,
+      "image": "https://picsum.photos/300/200?random=23",
+      "description": "توپ بسکتبال اسپالدینگ مناسب برای بازی در سالن و فضای باز."
+    },
+    {
+      "id": 24,
+      "name": "کفش ورزشی آدیداس",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 850000,
+      "stock": 30,
+      "image": "https://picsum.photos/300/200?random=24",
+      "description": "کفش ورزشی آدیداس با تکنولوژی Boost و راحتی فوق‌العاده."
+    },
+    {
+      "id": 25,
+      "name": "لباس ورزشی Nike",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 680000,
+      "stock": 45,
+      "image": "https://picsum.photos/300/200?random=25",
+      "description": "ست لباس ورزشی نایک با پارچه تنفس‌پذیر و راحتی بالا."
+    },
+    {
+      "id": 26,
+      "name": "دمبل 10 کیلوگرمی",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 320000,
+      "stock": 25,
+      "image": "https://picsum.photos/300/200?random=26",
+      "description": "دمبل 10 کیلوگرمی با روکش لاستیکی و دسته راحت."
+    },
+    {
+      "id": 27,
+      "name": "طناب پرش",
+      "category": "sports",
+      "categoryName": "ورزشی",
+      "price": 85000,
+      "stock": 70,
+      "image": "https://picsum.photos/300/200?random=27",
+      "description": "طناب پرش با دسته‌های راحت و طول قابل تنظیم."
+    },
+    {
+      "id": 28,
+      "name": "میز ناهارخوری چوبی",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 4500000,
+      "stock": 10,
+      "image": "https://picsum.photos/300/200?random=28",
+      "description": "میز ناهارخوری چوبی با طراحی مدرن و کیفیت بالا."
+    },
+    {
+      "id": 29,
+      "name": "صندلی اداری ارگونومیک",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 2800000,
+      "stock": 15,
+      "image": "https://picsum.photos/300/200?random=29",
+      "description": "صندلی اداری ارگونومیک با پشتیبانی کامل از کمر و گردن."
+    },
+    {
+      "id": 30,
+      "name": "کمد لباس 3 درب",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 3800000,
+      "stock": 12,
+      "image": "https://picsum.photos/300/200?random=30",
+      "description": "کمد لباس 3 درب با فضای ذخیره‌سازی مناسب و طراحی شیک."
+    },
+    {
+      "id": 31,
+      "name": "فرش ماشینی 3×4",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 1200000,
+      "stock": 20,
+      "image": "https://picsum.photos/300/200?random=31",
+      "description": "فرش ماشینی با طرح زیبا و کیفیت بالا، مناسب برای اتاق نشیمن."
+    },
+    {
+      "id": 32,
+      "name": "پرده کرکره",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 680000,
+      "stock": 30,
+      "image": "https://picsum.photos/300/200?random=32",
+      "description": "پرده کرکره با قابلیت تنظیم نور و طراحی مدرن."
+    },
+    {
+      "id": 33,
+      "name": "گلدان سرامیکی",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 250000,
+      "stock": 40,
+      "image": "https://picsum.photos/300/200?random=33",
+      "description": "گلدان سرامیکی با طراحی زیبا و مناسب برای گیاهان آپارتمانی."
+    },
+    {
+      "id": 34,
+      "name": "چراغ مطالعه LED",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 450000,
+      "stock": 35,
+      "image": "https://picsum.photos/300/200?random=34",
+      "description": "چراغ مطالعه LED با نور قابل تنظیم و طراحی مدرن."
+    },
+    {
+      "id": 35,
+      "name": "ساعت دیواری",
+      "category": "home",
+      "categoryName": "خانه و آشپزخانه",
+      "price": 180000,
+      "stock": 50,
+      "image": "https://picsum.photos/300/200?random=35",
+      "description": "ساعت دیواری با طراحی شیک و صدای آرام."
+    }
+  ],
+  "categories": [
+    {
+      "id": "electronics",
+      "name": "الکترونیک",
+      "description": "محصولات الکترونیکی و دیجیتال"
+    },
+    {
+      "id": "clothing",
+      "name": "پوشاک",
+      "description": "لباس، کفش و اکسسوری"
+    },
+    {
+      "id": "books",
+      "name": "کتاب",
+      "description": "کتاب‌های مختلف در زمینه‌های گوناگون"
+    },
+    {
+      "id": "sports",
+      "name": "ورزشی",
+      "description": "لوازم ورزشی و تناسب اندام"
+    },
+    {
+      "id": "home",
+      "name": "خانه و آشپزخانه",
+      "description": "لوازم خانگی و دکوراسیون"
+    }
+  ]
+} 

@@ -11,7 +11,7 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --success-color: #10b981;
     --error-color: #ef4444;
-    --warning-color: #ffbe4d;
+    --warning-color: #f59e0b;
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -570,7 +570,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
     background-color: var(--surface-color);
-    color: white;
+    color: var(--text-primary);
 }
 
 .apply-btn {
@@ -598,6 +598,7 @@ body {
     align-items: center;
     padding: var(--spacing-lg) 0;
     border-top: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-xl);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -606,7 +607,7 @@ body {
 .checkout-btn,
 .invoice-btn {
     width: 100%;
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     border: none;
     border-radius: var(--border-radius-md);
     font-weight: 600;
@@ -630,7 +631,7 @@ body {
 }
 
 .invoice-btn:hover {
-    background-color: #cf9654;
+    background-color: #d97706;
 }
 
 /* Related Products */
