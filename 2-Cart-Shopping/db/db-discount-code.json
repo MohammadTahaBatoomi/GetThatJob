@@ -1,0 +1,58 @@
+{
+"discountCodes": [
+  {
+    "code": "SAVE10",
+    "percentage": 10,
+    "description": "10% Discount",
+    "active": true,
+    "expiryDate": "2024-12-31",
+    "usageLimit": 100,
+    "usedCount": 0
+  },
+  {
+    "code": "SAVE20",
+    "percentage": 20,
+    "description": "20% Discount",
+    "active": true,
+    "expiryDate": "2024-12-31",
+    "usageLimit": 50,
+    "usedCount": 0
+  },
+  {
+    "code": "SAVE30",
+    "percentage": 30,
+    "description": "30% Discount",
+    "active": true,
+    "expiryDate": "2024-12-31",
+    "usageLimit": 25,
+    "usedCount": 0
+  },
+  {
+    "code": "WELCOME",
+    "percentage": 15,
+    "description": "15% Discount for New Users",
+    "active": true,
+    "expiryDate": "2024-12-31",
+    "usageLimit": 200,
+    "usedCount": 0
+  },
+  {
+    "code": "SUMMER2024",
+    "percentage": 25,
+    "description": "Summer Sale 25% Off",
+    "active": true,
+    "expiryDate": "2024-08-31",
+    "usageLimit": 75,
+    "usedCount": 0
+  },
+  {
+    "code": "FLASH50",
+    "percentage": 50,
+    "description": "Flash Sale 50% Off",
+    "active": false,
+    "expiryDate": "2024-06-30",
+    "usageLimit": 10,
+    "usedCount": 10
+  }
+]
+}

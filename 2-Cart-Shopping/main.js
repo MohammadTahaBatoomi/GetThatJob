@@ -8,13 +8,8 @@ let currentFilter = '';
 let currentCategory = '';
 let appliedDiscount = null;
 
-// Discount Codes
-const discountCodes = {
-    'SAVE10': { percentage: 10, description: '10% Discount' },
-    'SAVE20': { percentage: 20, description: '20% Discount' },
-    'SAVE30': { percentage: 30, description: '30% Discount' },
-    'WELCOME': { percentage: 15, description: '15% Discount for New Users' }
-};
+// Discount Codes - Will be loaded from database
+let discountCodes = {};
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -43,6 +38,9 @@ async function initializeApp() {
     
     // Display product statistics in console
     displayProductStats();
+    
+    // Display discount codes info in console
+    displayDiscountCodesInfo();
 }
 
 // Theme Management
@@ -149,13 +147,16 @@ function logoutUser() {
 // Product Management
 async function generateProducts() {
     try {
-        const response = await fetch('db/db.json');
+        const response = await fetch('db/db-products.json');
         const data = await response.json();
         products = data.products;
         console.log('Products loaded from database:', products.length, 'products');
         
         // Load categories dynamically
         await loadCategories(data.categories);
+        
+        // Load discount codes dynamically
+        await loadDiscountCodes(data.discountCodes);
     } catch (error) {
         console.error('Error loading products:', error);
         // Fallback to default products if database fails
@@ -200,6 +201,82 @@ async function loadCategories(categoriesData) {
     } catch (error) {
         console.error('Error loading categories:', error);
     }
+}
+
+async function loadDiscountCodes(discountCodesData) {
+    try {
+        // Convert array to object for easier access
+        discountCodes = {};
+        discountCodesData.forEach(discount => {
+            discountCodes[discount.code] = {
+                percentage: discount.percentage,
+                description: discount.description,
+                active: discount.active,
+                expiryDate: discount.expiryDate,
+                usageLimit: discount.usageLimit,
+                usedCount: discount.usedCount
+            };
+        });
+        
+        console.log('Discount codes loaded:', discountCodesData.length, 'codes');
+    } catch (error) {
+        console.error('Error loading discount codes:', error);
+    }
+}
+
+// Function to get active discount codes
+function getActiveDiscountCodes() {
+    const today = new Date();
+    return Object.values(discountCodes).filter(discount => 
+        discount.active && 
+        new Date(discount.expiryDate) > today && 
+        discount.usedCount < discount.usageLimit
+    );
+}
+
+// Function to add new discount code
+async function addDiscountCode(newDiscount) {
+    try {
+        const response = await fetch('db/db-discount-code.json');
+        const data = await response.json();
+        
+        // Add new discount code
+        data.discountCodes.push(newDiscount);
+        
+        // Update local discount codes
+        discountCodes[newDiscount.code] = {
+            percentage: newDiscount.percentage,
+            description: newDiscount.description,
+            active: newDiscount.active,
+            expiryDate: newDiscount.expiryDate,
+            usageLimit: newDiscount.usageLimit,
+            usedCount: newDiscount.usedCount
+        };
+        
+        console.log('New discount code added:', newDiscount.code);
+        return newDiscount;
+    } catch (error) {
+        console.error('Error adding discount code:', error);
+        throw error;
+    }
+}
+
+// Function to update discount code usage
+function updateDiscountUsage(code) {
+    if (discountCodes[code]) {
+        discountCodes[code].usedCount++;
+        console.log(`Discount code ${code} usage updated: ${discountCodes[code].usedCount}/${discountCodes[code].usageLimit}`);
+    }
+}
+
+// Function to display discount codes info
+function displayDiscountCodesInfo() {
+    const activeCodes = getActiveDiscountCodes();
+    console.log('🎫 Active Discount Codes:');
+    activeCodes.forEach(discount => {
+        const expiryDate = new Date(discount.expiryDate).toLocaleDateString('en-US');
+        console.log(`  ${discount.description}: ${discount.percentage}% off (Expires: ${expiryDate}, Used: ${discount.usedCount}/${discount.usageLimit})`);
+    });
 }
 
 // Function to add new product to database
@@ -638,7 +715,29 @@ function applyDiscount() {
         return;
     }
     
-    appliedDiscount = discountCodes[code];
+    const discount = discountCodes[code];
+    
+    // Check if discount is active
+    if (!discount.active) {
+        alert('This discount code is not active');
+        return;
+    }
+    
+    // Check if discount has expired
+    const today = new Date();
+    const expiryDate = new Date(discount.expiryDate);
+    if (today > expiryDate) {
+        alert('This discount code has expired');
+        return;
+    }
+    
+    // Check usage limit
+    if (discount.usedCount >= discount.usageLimit) {
+        alert('This discount code has reached its usage limit');
+        return;
+    }
+    
+    appliedDiscount = discount;
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const discountValue = (subtotal * appliedDiscount.percentage) / 100;
     
@@ -992,3 +1091,9 @@ window.filterProductsByPrice = filterProductsByPrice;
 window.getProductsInStock = getProductsInStock;
 window.getLowStockProducts = getLowStockProducts;
 window.sortProducts = sortProducts;
+
+// Global functions for discount code operations
+window.addDiscountCode = addDiscountCode;
+window.getActiveDiscountCodes = getActiveDiscountCodes;
+window.updateDiscountUsage = updateDiscountUsage;
+window.displayDiscountCodesInfo = displayDiscountCodesInfo;
