@@ -341,16 +341,6 @@ function renderHomeProducts() {
     const homePagination = document.getElementById('homePagination');
     if (homePagination) {
         homePagination.innerHTML = '';
-        
-        // اضافه کردن دکمه "مشاهده همه محصولات"
-        const viewAllButton = document.createElement('div');
-        viewAllButton.className = 'view-all-container';
-        viewAllButton.innerHTML = `
-            <button class="view-all-btn" onclick="showPage('products')">
-                مشاهده همه محصولات (${products.length} محصول)
-            </button>
-        `;
-        homePagination.appendChild(viewAllButton);
     }
 }
 
