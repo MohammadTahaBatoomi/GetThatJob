@@ -155,8 +155,8 @@ async function generateProducts() {
         // Load categories dynamically
         await loadCategories(data.categories);
         
-        // Load discount codes dynamically
-        await loadDiscountCodes(data.discountCodes);
+        // Load discount codes from separate file
+        await loadDiscountCodesFromFile();
     } catch (error) {
         console.error('Error loading products:', error);
         // Fallback to default products if database fails
@@ -203,11 +203,14 @@ async function loadCategories(categoriesData) {
     }
 }
 
-async function loadDiscountCodes(discountCodesData) {
+async function loadDiscountCodesFromFile() {
     try {
+        const response = await fetch('db/db-discount-code.json');
+        const data = await response.json();
+        
         // Convert array to object for easier access
         discountCodes = {};
-        discountCodesData.forEach(discount => {
+        data.discountCodes.forEach(discount => {
             discountCodes[discount.code] = {
                 percentage: discount.percentage,
                 description: discount.description,
@@ -218,9 +221,22 @@ async function loadDiscountCodes(discountCodesData) {
             };
         });
         
-        console.log('Discount codes loaded:', discountCodesData.length, 'codes');
+        console.log('Discount codes loaded from file:', data.discountCodes.length, 'codes');
+        console.log('Available codes:', Object.keys(discountCodes));
     } catch (error) {
-        console.error('Error loading discount codes:', error);
+        console.error('Error loading discount codes from file:', error);
+        // Set default discount codes if file loading fails
+        discountCodes = {
+            'SAVE10': {
+                percentage: 10,
+                description: '10% Discount',
+                active: true,
+                expiryDate: '2024-12-31',
+                usageLimit: 100,
+                usedCount: 0
+            }
+        };
+        console.log('Using default discount codes');
     }
 }
 
@@ -411,6 +427,19 @@ function getFilteredProducts() {
         filtered = filtered.filter(product => product.category === currentCategory);
     }
     
+    // iPhone ها را اول نمایش بده
+    filtered.sort((a, b) => {
+        // اگر هر دو iPhone هستند، بر اساس قیمت مرتب کن
+        if (a.category === 'phones' && b.category === 'phones') {
+            return b.price - a.price; // گران‌ترین اول
+        }
+        // اگر فقط یکی iPhone است، آن را اول بگذار
+        if (a.category === 'phones') return -1;
+        if (b.category === 'phones') return 1;
+        // بقیه محصولات بر اساس ID مرتب شوند
+        return a.id - b.id;
+    });
+    
     return filtered;
 }
 
@@ -437,14 +466,29 @@ function renderProducts() {
 function renderHomeProducts() {
     const productsGrid = document.getElementById('homeProductsGrid');
     
-    // فقط 6 محصول اول را نمایش بده
-    const homeProducts = products.slice(0, 6);
+    // از هر کتگوری 2 محصول نمایش بده (مجموع 10 محصول)
+    const categories = [
+        { id: 'phones', name: 'Phones' },
+        { id: 'mac', name: 'Mac' },
+        { id: 'airpods', name: 'AirPods' },
+    ];
     
     productsGrid.innerHTML = '';
     
-    homeProducts.forEach(product => {
-        const productCard = createProductCard(product);
-        productsGrid.appendChild(productCard);
+    categories.forEach(category => {
+        // عنوان کتگوری را اضافه کن
+        const categoryProducts = products.filter(p => p.category === category.id);
+        const selectedProducts = categoryProducts.slice(0, 3);
+        
+        const categorySection = document.createElement('div');
+        categorySection.className = 'category-section';
+        
+        selectedProducts.forEach(product => {
+            const productCard = createProductCard(product);
+            categorySection.appendChild(productCard);
+        });
+        
+        productsGrid.appendChild(categorySection);
     });
     
     // حذف pagination از صفحه خانه
@@ -461,7 +505,6 @@ function createProductCard(product) {
         <img src="${product.image}" alt="${product.name}" class="product-image">
         <div class="product-info">
             <h3 class="product-title">${product.name}</h3>
-            <p class="product-category">${product.categoryName}</p>
             <p class="product-price">$${formatPrice(product.price)}</p>
             <p class="product-stock">Stock: ${product.stock} units</p>
             <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
@@ -695,9 +738,22 @@ function calculateTotal() {
 
 function updateCartSummary() {
     const { subtotal, shipping, total } = calculateTotal();
+    const subtotalElement = document.getElementById('subtotal');
     const totalPrice = document.getElementById('totalPrice');
+    const itemCount = document.getElementById('summaryItemCount');
     
-    totalPrice.textContent = `$${formatPrice(total)}`;
+    if (subtotalElement) {
+        subtotalElement.textContent = `$${formatPrice(subtotal)}`;
+    }
+    
+    if (totalPrice) {
+        totalPrice.textContent = `$${formatPrice(total)}`;
+    }
+    
+    if (itemCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        itemCount.textContent = totalItems;
+    }
 }
 
 function applyDiscount() {
@@ -710,8 +766,12 @@ function applyDiscount() {
         return;
     }
     
+    console.log('Trying to apply code:', code);
+    console.log('Available codes:', Object.keys(discountCodes));
+    console.log('Discount codes object:', discountCodes);
+    
     if (!discountCodes[code]) {
-        alert('Invalid discount code');
+        alert(`Invalid discount code: ${code}\n\nAvailable codes: ${Object.keys(discountCodes).join(', ')}`);
         return;
     }
     
@@ -746,6 +806,23 @@ function applyDiscount() {
     
     updateCartSummary();
     alert(`Discount code ${appliedDiscount.description} applied`);
+}
+
+function removeDiscount() {
+    appliedDiscount = null;
+    const discountRow = document.getElementById('discountRow');
+    const discountCode = document.getElementById('discountCode');
+    
+    if (discountRow) {
+        discountRow.style.display = 'none';
+    }
+    
+    if (discountCode) {
+        discountCode.value = '';
+    }
+    
+    updateCartSummary();
+    alert('Discount code removed');
 }
 
 // Related Products
@@ -1097,3 +1174,26 @@ window.addDiscountCode = addDiscountCode;
 window.getActiveDiscountCodes = getActiveDiscountCodes;
 window.updateDiscountUsage = updateDiscountUsage;
 window.displayDiscountCodesInfo = displayDiscountCodesInfo;
+
+// Function to test discount codes (for debugging)
+function testDiscountCodes() {
+    console.log('🧪 Testing Discount Codes:');
+    console.log('Available codes:', Object.keys(discountCodes));
+    console.log('Discount codes object:', discountCodes);
+    
+    if (Object.keys(discountCodes).length === 0) {
+        console.log('❌ No discount codes loaded!');
+    } else {
+        console.log('✅ Discount codes loaded successfully');
+        Object.entries(discountCodes).forEach(([code, discount]) => {
+            console.log(`  ${code}: ${discount.description} (${discount.percentage}%) - Active: ${discount.active}`);
+        });
+    }
+}
+
+// Call test function after page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        testDiscountCodes();
+    }, 1000);
+});

@@ -2,380 +2,334 @@
   "products": [
     {
       "id": 1,
-      "name": "Apple MacBook Pro",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 85000000,
-      "stock": 15,
-      "image": "https://picsum.photos/300/200?random=1",
-      "description": "Powerful Apple laptop with M2 processor, 16GB RAM and 512GB SSD storage. Perfect for professional work and design."
+      "name": "Apple Watch Series 9",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 25000000,
+      "stock": 20,
+      "image": "../images/images-products/accessories/0d5a0c5ded3ff0cc30317778dae5ea9f7bcf683b_1601710527.webp",
+      "description": "Latest Apple Watch with health tracking, Always-On display, and powerful S9 chip."
     },
     {
       "id": 2,
-      "name": "Samsung Galaxy S24",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 45000000,
-      "stock": 25,
-      "image": "https://picsum.photos/300/200?random=2",
-      "description": "Samsung smartphone with 108MP camera, 6.2-inch display and 4000mAh battery."
+      "name": "Apple Magic Mouse",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 5500000,
+      "stock": 30,
+      "image": "../images/images-products/accessories/155f3dfaf739f3ebbb29cc29137d1e7746c32c00_1753697886.webp",
+      "description": "Wireless Magic Mouse with Multi-Touch surface for intuitive navigation."
     },
     {
       "id": 3,
-      "name": "Apple iPad Pro",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 35000000,
-      "stock": 12,
-      "image": "https://picsum.photos/300/200?random=3",
-      "description": "Professional Apple tablet with 12.9-inch display, Apple Pencil and M2 processor."
+      "name": "Apple Magic Keyboard",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 8500000,
+      "stock": 25,
+      "image": "../images/images-products/accessories/2137535.webp",
+      "description": "Magic Keyboard with numeric keypad and ultra-slim design."
     },
     {
       "id": 4,
-      "name": "Sony WH-1000XM5 Headphones",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 8500000,
-      "stock": 30,
-      "image": "https://picsum.photos/300/200?random=4",
-      "description": "Sony wireless headphones with active noise cancellation and exceptional sound quality."
+      "name": "Apple Pencil (2nd Gen)",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 9000000,
+      "stock": 15,
+      "image": "../images/images-products/accessories/813cc86a42a0d11ef220556ed884864148eff79e_1700311866.webp",
+      "description": "Precision stylus for iPad with wireless charging and magnetic attachment."
     },
     {
       "id": 5,
-      "name": "Logitech Mechanical Keyboard",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 3200000,
+      "name": "AirTag (4 Pack)",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 4500000,
       "stock": 40,
-      "image": "https://picsum.photos/300/200?random=5",
-      "description": "Logitech mechanical keyboard with Cherry MX switches and RGB lighting."
+      "image": "../images/images-products/accessories/c8eff7384d6ead9488dbe520859811b327e0a3f2_1622279938.webp",
+      "description": "Track your items with AirTag and Find My network."
     },
     {
       "id": 6,
-      "name": "Razer Gaming Mouse",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 1800000,
-      "stock": 35,
-      "image": "https://picsum.photos/300/200?random=6",
-      "description": "Razer gaming mouse with 25K DPI sensor and programmable buttons."
+      "name": "Apple MagSafe Charger",
+      "category": "accessories",
+      "categoryName": "Accessories",
+      "price": 3500000,
+      "stock": 50,
+      "image": "../images/images-products/accessories/cc6c5b262622289b4b6e0db01580ce4e71485361_1754249394.webp",
+      "description": "Fast wireless charging with perfect alignment for iPhone and AirPods."
     },
+
     {
       "id": 7,
-      "name": "LG 4K Monitor",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 12000000,
-      "stock": 8,
-      "image": "https://picsum.photos/300/200?random=7",
-      "description": "27-inch LG monitor with 4K resolution and HDR support."
+      "name": "AirPods Pro (2nd Gen)",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 11500000,
+      "stock": 25,
+      "image": "../images/images-products/airpods/0d022d11cb7b5b1544a7132df4e9dfe9354ac195_1745825005.webp",
+      "description": "Noise-cancelling AirPods Pro with Adaptive Transparency and spatial audio."
     },
     {
       "id": 8,
-      "name": "HP LaserJet Printer",
-      "category": "electronics",
-      "categoryName": "Electronics",
-      "price": 5500000,
-      "stock": 20,
-      "image": "https://picsum.photos/300/200?random=8",
-      "description": "HP laser printer with high print speed and excellent quality."
+      "name": "AirPods (3rd Gen)",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 8500000,
+      "stock": 35,
+      "image": "../images/images-products/airpods/47253d3d200446771fd7be0c5c68545a71728ce9_1745827634.webp",
+      "description": "AirPods with spatial audio, longer battery life, and comfortable fit."
     },
     {
       "id": 9,
-      "name": "Cotton Men's Shirt",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 450000,
-      "stock": 50,
-      "image": "https://picsum.photos/300/200?random=9",
-      "description": "Men's shirt made of natural cotton, suitable for daily and formal use."
+      "name": "AirPods Max",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 26500000,
+      "stock": 10,
+      "image": "../images/images-products/airpods/965172f469fbbb9ac07f9751cc545aea4fe05ef8_1745760215.webp",
+      "description": "High-fidelity over-ear headphones with Active Noise Cancellation."
     },
     {
       "id": 10,
-      "name": "Levi's Denim Jeans",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 680000,
-      "stock": 45,
-      "image": "https://picsum.photos/300/200?random=10",
-      "description": "Levi's denim jeans with high quality and long-lasting durability."
+      "name": "AirPods (2nd Gen)",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 6500000,
+      "stock": 40,
+      "image": "../images/images-products/airpods/e0075b05caae9fac2c4b77cea77de7c2b2986ad4_1745760224.webp",
+      "description": "Classic AirPods with seamless Apple device connectivity."
     },
     {
       "id": 11,
-      "name": "Men's Formal Suit",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 2800000,
-      "stock": 25,
-      "image": "https://picsum.photos/300/200?random=11",
-      "description": "Men's formal suit suitable for business meetings and formal ceremonies."
+      "name": "Beats Fit Pro",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 9800000,
+      "stock": 20,
+      "image": "../images/images-products/airpods/f37baba5bd2b9b08ff24eced88a9263025e856bf_1754253034.webp",
+      "description": "Wireless earbuds by Apple with secure fit and active noise cancellation."
     },
     {
       "id": 12,
-      "name": "Nike Sports Shoes",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 1200000,
-      "stock": 30,
-      "image": "https://picsum.photos/300/200?random=12",
-      "description": "Nike sports shoes with Air Max technology and exceptional comfort."
+      "name": "Beats Studio Buds",
+      "category": "airpods",
+      "categoryName": "AirPods",
+      "price": 7800000,
+      "stock": 28,
+      "image": "../images/images-products/airpods/d911c6405e305b3ac9c6c25cda83cf9ca66ae13a_1754836202.webp",
+      "description": "Compact true wireless earbuds with active noise cancellation."
     },
+
     {
       "id": 13,
-      "name": "Baseball Cap",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 180000,
-      "stock": 60,
-      "image": "https://picsum.photos/300/200?random=13",
-      "description": "Baseball cap with modern design and sun protection."
+      "name": "iPad Pro 12.9-inch (M2)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 62000000,
+      "stock": 12,
+      "image": "../images/images-products/ipad/383319ea2a98b56a1d83b516cc895099926c8e38_1754254900.webp",
+      "description": "The ultimate iPad with M2 chip, Liquid Retina XDR display, and Apple Pencil support."
     },
     {
       "id": 14,
-      "name": "Leather Handbag",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 950000,
+      "name": "iPad Air (5th Gen)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 38000000,
       "stock": 20,
-      "image": "https://picsum.photos/300/200?random=14",
-      "description": "Leather handbag with high quality and stylish design."
+      "image": "../images/images-products/ipad/b0d4dd209172b0d5fb322b51836160b24bcba855_1754986460.webp",
+      "description": "Light and powerful iPad Air with M1 chip and 10.9-inch Liquid Retina display."
     },
     {
       "id": 15,
-      "name": "Casio Wristwatch",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 750000,
-      "stock": 35,
-      "image": "https://picsum.photos/300/200?random=15",
-      "description": "Casio wristwatch with various features and durable design."
+      "name": "iPad (10th Gen)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 25000000,
+      "stock": 30,
+      "image": "../images/images-products/ipad/c2f488b1c3ba392aa5859d5dd89eec18ed9c6a89_1754235250.webp",
+      "description": "Affordable iPad with A14 Bionic chip and modern design."
     },
     {
       "id": 16,
-      "name": "Ray-Ban Sunglasses",
-      "category": "clothing",
-      "categoryName": "Clothing",
-      "price": 1200000,
-      "stock": 25,
-      "image": "https://picsum.photos/300/200?random=16",
-      "description": "Ray-Ban sunglasses with quality lenses and complete UV protection."
+      "name": "iPad Mini (6th Gen)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 22000000,
+      "stock": 18,
+      "image": "../images/images-products/ipad/d11ac8f7e6f479f8f76ba7cb40390045301da904_1754240833.webp",
+      "description": "Compact iPad Mini with A15 Bionic chip and 8.3-inch Liquid Retina display."
     },
     {
       "id": 17,
-      "name": "One Hundred Years of Solitude",
-      "category": "books",
-      "categoryName": "Books",
-      "price": 180000,
-      "stock": 40,
-      "image": "https://picsum.photos/300/200?random=17",
-      "description": "Famous novel by Gabriel García Márquez, high-quality English translation."
+      "name": "iPad Pro 11-inch (M2)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 52000000,
+      "stock": 15,
+      "image": "../images/images-products/ipad/d2bfb39e214a2407bd9185419ddc875b50032c86_1754254901.webp",
+      "description": "Portable iPad Pro with M2 chip and ProMotion display."
     },
     {
       "id": 18,
-      "name": "JavaScript Programming Book",
-      "category": "books",
-      "categoryName": "Books",
-      "price": 320000,
-      "stock": 30,
-      "image": "https://picsum.photos/300/200?random=18",
-      "description": "Comprehensive JavaScript learning book for beginners and professionals."
+      "name": "iPad (9th Gen)",
+      "category": "ipad",
+      "categoryName": "iPad",
+      "price": 18000000,
+      "stock": 22,
+      "image": "../images/images-products/ipad/dfa0d9cc7b043d7398fc1ef0c9b8012a51e39267_1754240834.webp",
+      "description": "Budget-friendly iPad with A13 Bionic chip and 10.2-inch display."
     },
+
     {
       "id": 19,
-      "name": "International Cookbook",
-      "category": "books",
-      "categoryName": "Books",
-      "price": 250000,
-      "stock": 35,
-      "image": "https://picsum.photos/300/200?random=19",
-      "description": "Cookbook with recipes for traditional and modern international cuisine."
+      "name": "MacBook Pro 14-inch (M3)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 85000000,
+      "stock": 10,
+      "image": "../images/images-products/mac/31433ce874aca25144610fec94da49fab8c3d476_1754241650.webp",
+      "description": "Professional MacBook Pro with M3 Pro chip and Liquid Retina XDR display."
     },
     {
       "id": 20,
-      "name": "Nature Scientific Magazine",
-      "category": "books",
-      "categoryName": "Books",
-      "price": 120000,
-      "stock": 50,
-      "image": "https://picsum.photos/300/200?random=20",
-      "description": "Nature scientific magazine with latest news and scientific articles."
+      "name": "MacBook Air 15-inch (M2)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 48000000,
+      "stock": 18,
+      "image": "../images/images-products/mac/6d9821f1b21317cfdc674f2a1ef83cfe9c57f65e_1723039993.webp",
+      "description": "Slim and lightweight MacBook Air with large 15-inch display and M2 chip."
     },
     {
       "id": 21,
-      "name": "Children's Bedtime Stories",
-      "category": "books",
-      "categoryName": "Books",
-      "price": 95000,
-      "stock": 60,
-      "image": "https://picsum.photos/300/200?random=21",
-      "description": "Collection of children's stories with beautiful and attractive illustrations."
+      "name": "Mac Studio (M2 Ultra)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 125000000,
+      "stock": 6,
+      "image": "../images/images-products/mac/b2c0eb53f0eeacdefb8771155bf5e4887222a654_1733933547.webp",
+      "description": "Compact desktop powerhouse with M2 Ultra chip for professionals."
     },
     {
       "id": 22,
-      "name": "Adidas Football",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 450000,
-      "stock": 40,
-      "image": "https://picsum.photos/300/200?random=22",
-      "description": "Adidas football with professional quality and high durability."
+      "name": "iMac 24-inch (M1)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 42000000,
+      "stock": 15,
+      "image": "../images/images-products/mac/b52f9e5ac0e251729f27ac4f7176068344197b6f_1754241710.webp",
+      "description": "All-in-one iMac with M1 chip and stunning 4.5K Retina display."
     },
     {
       "id": 23,
-      "name": "Spalding Basketball",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 380000,
-      "stock": 35,
-      "image": "https://picsum.photos/300/200?random=23",
-      "description": "Spalding basketball suitable for indoor and outdoor play."
+      "name": "Mac mini (M2)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 28000000,
+      "stock": 20,
+      "image": "../images/images-products/mac/e75d69cc408ea9d99fee43cd8e3229fa6e57f06a_1723653904.webp",
+      "description": "Affordable and powerful compact desktop Mac."
     },
     {
       "id": 24,
-      "name": "Adidas Sports Shoes",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 850000,
-      "stock": 30,
-      "image": "https://picsum.photos/300/200?random=24",
-      "description": "Adidas sports shoes with Boost technology and exceptional comfort."
+      "name": "MacBook Pro 16-inch (M3 Max)",
+      "category": "mac",
+      "categoryName": "Mac",
+      "price": 115000000,
+      "stock": 8,
+      "image": "../images/images-products/mac/f947a1158081a83438a8f6d7d53ecbdd69f72a37_1723644625.webp",
+      "description": "Ultimate performance MacBook Pro with M3 Max chip and long battery life."
     },
+
     {
       "id": 25,
-      "name": "Nike Sports Wear",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 680000,
-      "stock": 45,
-      "image": "https://picsum.photos/300/200?random=25",
-      "description": "Nike sports wear set with breathable fabric and high comfort."
+      "name": "iPhone 15 Pro Max",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 78000000,
+      "stock": 20,
+      "image": "../images/images-products/phones/48daaebd4cb7706cce21ce8b5e485d6fdafa6bd1_1736598863.webp",
+      "description": "Flagship iPhone with titanium design, A17 Pro chip, and advanced camera system."
     },
     {
       "id": 26,
-      "name": "10kg Dumbbell",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 320000,
+      "name": "iPhone 15",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 52000000,
       "stock": 25,
-      "image": "https://picsum.photos/300/200?random=26",
-      "description": "10kg dumbbell with rubber coating and comfortable grip."
+      "image": "../images/images-products/phones/5af568b4909435c6a215ad5e728e902db234b673_1736597759.webp",
+      "description": "Latest iPhone 15 with Dynamic Island and powerful A16 chip."
     },
     {
       "id": 27,
-      "name": "Jump Rope",
-      "category": "sports",
-      "categoryName": "Sports",
-      "price": 85000,
-      "stock": 70,
-      "image": "https://picsum.photos/300/200?random=27",
-      "description": "Jump rope with comfortable handles and adjustable length."
+      "name": "iPhone 14 Pro",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 62000000,
+      "stock": 15,
+      "image": "../images/images-products/phones/8288cea7a9b9e55ac7e69a0cdb9dc22f008e1d13_1748852430.webp",
+      "description": "iPhone 14 Pro with ProMotion display and advanced camera system."
     },
     {
       "id": 28,
-      "name": "Wooden Dining Table",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 4500000,
-      "stock": 10,
-      "image": "https://picsum.photos/300/200?random=28",
-      "description": "Wooden dining table with modern design and high quality."
+      "name": "iPhone 13",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 38000000,
+      "stock": 30,
+      "image": "../images/images-products/phones/8da0ac0e9c414ff6bc745cd6b032ef61e6d93cf1_1730113501.webp",
+      "description": "iPhone 13 with A15 Bionic chip and dual-camera system."
     },
     {
       "id": 29,
-      "name": "Ergonomic Office Chair",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 2800000,
-      "stock": 15,
-      "image": "https://picsum.photos/300/200?random=29",
-      "description": "Ergonomic office chair with complete back and neck support."
+      "name": "iPhone SE (3rd Gen)",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 22000000,
+      "stock": 25,
+      "image": "../images/images-products/phones/a3eab70feb1040f19b2160de0fc920b3dee3be7d_1753628757.webp",
+      "description": "Compact and affordable iPhone SE with A15 Bionic chip."
     },
     {
       "id": 30,
-      "name": "3-Door Wardrobe",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 3800000,
-      "stock": 12,
-      "image": "https://picsum.photos/300/200?random=30",
-      "description": "3-door wardrobe with suitable storage space and stylish design."
-    },
-    {
-      "id": 31,
-      "name": "Machine-Made Carpet 3×4",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 1200000,
-      "stock": 20,
-      "image": "https://picsum.photos/300/200?random=31",
-      "description": "Machine-made carpet with beautiful design and high quality, suitable for living room."
-    },
-    {
-      "id": 32,
-      "name": "Blind Curtains",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 680000,
-      "stock": 30,
-      "image": "https://picsum.photos/300/200?random=32",
-      "description": "Blind curtains with light adjustment capability and modern design."
-    },
-    {
-      "id": 33,
-      "name": "Ceramic Flower Pot",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 250000,
-      "stock": 40,
-      "image": "https://picsum.photos/300/200?random=33",
-      "description": "Ceramic flower pot with beautiful design and suitable for indoor plants."
-    },
-    {
-      "id": 34,
-      "name": "LED Study Lamp",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 450000,
-      "stock": 35,
-      "image": "https://picsum.photos/300/200?random=34",
-      "description": "LED study lamp with adjustable light and modern design."
-    },
-    {
-      "id": 35,
-      "name": "Wall Clock",
-      "category": "home",
-      "categoryName": "Home & Kitchen",
-      "price": 180000,
-      "stock": 50,
-      "image": "https://picsum.photos/300/200?random=35",
-      "description": "Wall clock with stylish design and quiet sound."
+      "name": "iPhone 12",
+      "category": "phones",
+      "categoryName": "Phones",
+      "price": 28000000,
+      "stock": 22,
+      "image": "../images/images-products/phones/c0e079b958167bd0fdef1f0e12440e7fed29b1bd_1727853611.webp",
+      "description": "iPhone 12 with A14 Bionic chip and 5G support."
     }
   ],
   "categories": [
     {
-      "id": "electronics",
-      "name": "Electronics",
-      "description": "Electronic and digital products"
+      "id": "accessories",
+      "name": "Accessories",
+      "description": "Apple accessories including watches, mice, keyboards, pencils and chargers"
     },
     {
-      "id": "clothing",
-      "name": "Clothing",
-      "description": "Clothing, shoes and accessories"
+      "id": "airpods",
+      "name": "AirPods",
+      "description": "Apple and Beats headphones and earbuds"
     },
     {
-      "id": "books",
-      "name": "Books",
-      "description": "Various books in different fields"
+      "id": "ipad",
+      "name": "iPad",
+      "description": "Apple iPad tablets in various sizes and models"
     },
     {
-      "id": "sports",
-      "name": "Sports",
-      "description": "Sports equipment and fitness"
+      "id": "mac",
+      "name": "Mac",
+      "description": "Mac computers including laptops and desktops"
     },
     {
-      "id": "home",
-      "name": "Home & Kitchen",
-      "description": "Home appliances and decoration"
+      "id": "phones",
+      "name": "Phones",
+      "description": "Apple iPhone models in various configurations"
     }
   ]
 }

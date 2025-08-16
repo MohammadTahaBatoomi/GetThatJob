@@ -122,6 +122,11 @@
               </div>
 
               <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+              </div>
+
+              <div class="summary-row">
                 <span>Shipping Cost</span>
                 <div class="shipping-dropdown">
                   <select id="shippingSelect">
@@ -149,7 +154,10 @@
                 style="display: none"
               >
                 <span>Applied Discount</span>
-                <span id="discountAmount">$0</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span id="discountAmount">$0</span>
+                  <button class="remove-discount-btn" onclick="removeDiscount()" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">Remove</button>
+                </div>
               </div>
             </div>
 
