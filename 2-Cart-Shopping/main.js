@@ -488,6 +488,11 @@ function renderProducts() {
        // اگر هیچ محصولی پیدا نشد، پیام مناسب نمایش بده
        if (filteredProducts.length === 0) {
         const noResultsDiv = document.createElement('div');
+        noResultsDiv.style.gridColumn = '1 / -1'; // کل عرض grid را بگیرد
+        noResultsDiv.style.display = 'flex';
+        noResultsDiv.style.justifyContent = 'center';
+        noResultsDiv.style.alignItems = 'center';
+        noResultsDiv.style.minHeight = '400px';
         noResultsDiv.innerHTML = `
                 <img class="no-results-image" src="images/original-edbc9b1a905204e54ac50ca36215712a-removebg-preview.png" class="no-results-image">
         `;
