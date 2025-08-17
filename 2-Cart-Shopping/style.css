@@ -709,7 +709,7 @@ body {
 .empty-cart {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin-top: 50px;
     margin-bottom: 90px;
 }
