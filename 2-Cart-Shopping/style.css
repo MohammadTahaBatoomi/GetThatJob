@@ -1442,3 +1442,122 @@ textarea:focus {
     background: #dc2626 !important;
     transform: translateY(-1px) !important;
 }
+
+/* Star Rating System */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.star-rating.no-rating {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 12px;
+}
+
+.star-rating i {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.star-full {
+    color: #fbbf24; /* Amber color for full stars */
+}
+
+.star-half {
+    color: #fbbf24; /* Amber color for half stars */
+}
+
+.star-empty {
+    color: #d1d5db; /* Light gray for empty stars */
+}
+
+.rating-number {
+    margin-left: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+/* Dark theme adjustments for star ratings */
+[data-theme="dark"] .star-empty {
+    color: #4b5563;
+}
+
+[data-theme="dark"] .rating-number {
+    color: var(--text-primary);
+}
+
+/* Product card adjustments for star rating */
+.product-info .star-rating {
+    margin: 6px 0 8px 0;
+}
+
+.product-info .star-rating i {
+    font-size: 13px;
+}
+
+.product-info .rating-number {
+    font-size: 12px;
+}
+
+/* Responsive adjustments for star ratings */
+@media (max-width: 768px) {
+    .star-rating {
+        font-size: 12px;
+    }
+    
+    .star-rating i {
+        font-size: 12px;
+    }
+    
+    .rating-number {
+        font-size: 11px;
+    }
+}
+
+/* Product detail modal star rating adjustments */
+.product-detail-info .star-rating {
+    margin: 10px 0 15px 0;
+    font-size: 16px;
+}
+
+.product-detail-info .star-rating i {
+    font-size: 16px;
+}
+
+.product-detail-info .rating-number {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+/* Responsive adjustments for star ratings */
+@media (max-width: 768px) {
+    .star-rating {
+        font-size: 12px;
+    }
+    
+    .star-rating i {
+        font-size: 12px;
+    }
+    
+    .rating-number {
+        font-size: 11px;
+    }
+    
+    .product-detail-info .star-rating {
+        font-size: 14px;
+        margin: 8px 0 12px 0;
+    }
+    
+    .product-detail-info .star-rating i {
+        font-size: 14px;
+    }
+    
+    .product-detail-info .rating-number {
+        font-size: 12px;
+    }
+}

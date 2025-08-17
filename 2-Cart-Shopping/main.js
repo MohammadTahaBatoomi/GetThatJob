@@ -205,6 +205,7 @@ async function generateProducts() {
                 categoryName: "Electronics",
                 price: 85000000,
                 stock: 15,
+                rating: 4.7,
                 image: "https://picsum.photos/300/200?random=1",
                 description: "Powerful Apple laptop with M2 processor"
             }
@@ -577,13 +578,50 @@ function renderHomeProducts() {
     }
 }
 
+// Helper function to generate star rating HTML
+function generateStarRating(rating) {
+    if (!rating || rating === 0) {
+        return '<div class="star-rating no-rating">No ratings yet</div>';
+    }
+    
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let starsHTML = '<div class="star-rating">';
+    
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star star-full"></i>';
+    }
+    
+    // Half star
+    if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt star-half"></i>';
+    }
+    
+    // Empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star star-empty"></i>';
+    }
+    
+    starsHTML += '</div>';
+    
+    return starsHTML;
+}
+
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
+    
+    // Generate star rating
+    const starRating = generateStarRating(product.rating);
+    
     card.innerHTML = `
         <img src="${product.image}" alt="${product.name}" class="product-image">
         <div class="product-info">
             <h3 class="product-title">${product.name}</h3>
+            ${starRating}
             <p class="product-price">$${formatPrice(product.price)}</p>
             <p class="product-stock">Stock: ${product.stock} units</p>
             <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
@@ -964,11 +1002,15 @@ function showProductDetail(product) {
     const title = document.getElementById('modalProductTitle');
     const content = document.getElementById('productDetailContent');
     
+    // Generate star rating for product detail
+    const starRating = generateStarRating(product.rating);
+    
     title.textContent = product.name;
     content.innerHTML = `
         <img src="${product.image}" alt="${product.name}" class="product-detail-image">
         <div class="product-detail-info">
             <h4>${product.name}</h4>
+            ${starRating}
             <p class="product-detail-price">$${formatPrice(product.price)}</p>
             <p class="product-detail-stock">Stock: ${product.stock} units</p>
             <p>${product.description}</p>

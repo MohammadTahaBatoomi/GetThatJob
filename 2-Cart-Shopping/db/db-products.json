@@ -7,6 +7,7 @@
       "categoryName": "Accessories",
       "price": 25000000,
       "stock": 20,
+      "rating": 4.8,
       "image": "../images/images-products/accessories/0d5a0c5ded3ff0cc30317778dae5ea9f7bcf683b_1601710527.webp",
       "description": "Latest Apple Watch with health tracking, Always-On display, and powerful S9 chip."
     },
@@ -17,6 +18,7 @@
       "categoryName": "Accessories",
       "price": 5500000,
       "stock": 30,
+      "rating": 4.2,
       "image": "../images/images-products/accessories/155f3dfaf739f3ebbb29cc29137d1e7746c32c00_1753697886.webp",
       "description": "Wireless Magic Mouse with Multi-Touch surface for intuitive navigation."
     },
@@ -27,6 +29,7 @@
       "categoryName": "Accessories",
       "price": 8500000,
       "stock": 25,
+      "rating": 4.5,
       "image": "../images/images-products/accessories/2137535.webp",
       "description": "Magic Keyboard with numeric keypad and ultra-slim design."
     },
@@ -37,7 +40,8 @@
       "categoryName": "Accessories",
       "price": 9000000,
       "stock": 15,
-      "image": "../images/images-products/accessories/813cc86a42a0d11ef220556ed884864148eff79e_1700311866.webp",
+      "rating": 4.7,
+      "image": "../images/images-products/accessories/813cc86a42a0d11ef220556ed884864148eff79e_1700311886.webp",
       "description": "Precision stylus for iPad with wireless charging and magnetic attachment."
     },
     {
@@ -47,7 +51,8 @@
       "categoryName": "Accessories",
       "price": 4500000,
       "stock": 40,
-      "image": "../images/images-products/accessories/c8eff7384d6ead9488dbe520859811b327e0a3f2_1622279938.webp",
+      "rating": 4.0,
+      "image": "../images/images-products/accessories/c8eff7384d6ead9488dbe520859811b327e0a3f2_1622277888.webp",
       "description": "Track your items with AirTag and Find My network."
     },
     {
@@ -57,7 +62,8 @@
       "categoryName": "Accessories",
       "price": 3500000,
       "stock": 50,
-      "image": "../images/images-products/accessories/cc6c5b262622289b4b6e0db01580ce4e71485361_1754249394.webp",
+      "rating": 4.3,
+      "image": "../images/images-products/accessories/cc6c5b262622289b4b6e0db01580ce4e71485361_1754247886.webp",
       "description": "Fast wireless charging with perfect alignment for iPhone and AirPods."
     },
 
@@ -68,7 +74,8 @@
       "categoryName": "AirPods",
       "price": 11500000,
       "stock": 25,
-      "image": "../images/images-products/airpods/0d022d11cb7b5b1544a7132df4e9dfe9354ac195_1745825005.webp",
+      "rating": 4.9,
+      "image": "../images/images-products/airpods/0d022d11cb7b5b1544a7132df4e9dfe9354ac195_1745827886.webp",
       "description": "Noise-cancelling AirPods Pro with Adaptive Transparency and spatial audio."
     },
     {
@@ -78,7 +85,8 @@
       "categoryName": "AirPods",
       "price": 8500000,
       "stock": 35,
-      "image": "../images/images-products/airpods/47253d3d200446771fd7be0c5c68545a71728ce9_1745827634.webp",
+      "rating": 4.6,
+      "image": "../images/images-products/airpods/47253d3d200446771fd7be0c5c68545a71728c9_1745827886.webp",
       "description": "AirPods with spatial audio, longer battery life, and comfortable fit."
     },
     {
@@ -88,7 +96,8 @@
       "categoryName": "AirPods",
       "price": 26500000,
       "stock": 10,
-      "image": "../images/images-products/airpods/965172f469fbbb9ac07f9751cc545aea4fe05ef8_1745760215.webp",
+      "rating": 4.4,
+      "image": "../images/images-products/airpods/965172f469fbbb9ac07f9751cc545aea4fe05ef8_1745767886.webp",
       "description": "High-fidelity over-ear headphones with Active Noise Cancellation."
     },
     {
@@ -98,6 +107,7 @@
       "categoryName": "AirPods",
       "price": 6500000,
       "stock": 40,
+      "rating": 4.1,
       "image": "../images/images-products/airpods/e0075b05caae9fac2c4b77cea77de7c2b2986ad4_1745760224.webp",
       "description": "Classic AirPods with seamless Apple device connectivity."
     },
@@ -108,6 +118,7 @@
       "categoryName": "AirPods",
       "price": 9800000,
       "stock": 20,
+      "rating": 4.3,
       "image": "../images/images-products/airpods/f37baba5bd2b9b08ff24eced88a9263025e856bf_1754253034.webp",
       "description": "Wireless earbuds by Apple with secure fit and active noise cancellation."
     },
@@ -118,6 +129,7 @@
       "categoryName": "AirPods",
       "price": 7800000,
       "stock": 28,
+      "rating": 4.0,
       "image": "../images/images-products/airpods/d911c6405e305b3ac9c6c25cda83cf9ca66ae13a_1754836202.webp",
       "description": "Compact true wireless earbuds with active noise cancellation."
     },
@@ -129,6 +141,7 @@
       "categoryName": "iPad",
       "price": 62000000,
       "stock": 12,
+      "rating": 4.9,
       "image": "../images/images-products/ipad/383319ea2a98b56a1d83b516cc895099926c8e38_1754254900.webp",
       "description": "The ultimate iPad with M2 chip, Liquid Retina XDR display, and Apple Pencil support."
     },
@@ -139,6 +152,7 @@
       "categoryName": "iPad",
       "price": 38000000,
       "stock": 20,
+      "rating": 4.6,
       "image": "../images/images-products/ipad/b0d4dd209172b0d5fb322b51836160b24bcba855_1754986460.webp",
       "description": "Light and powerful iPad Air with M1 chip and 10.9-inch Liquid Retina display."
     },
@@ -149,6 +163,7 @@
       "categoryName": "iPad",
       "price": 25000000,
       "stock": 30,
+      "rating": 4.2,
       "image": "../images/images-products/ipad/c2f488b1c3ba392aa5859d5dd89eec18ed9c6a89_1754235250.webp",
       "description": "Affordable iPad with A14 Bionic chip and modern design."
     },
@@ -159,6 +174,7 @@
       "categoryName": "iPad",
       "price": 22000000,
       "stock": 18,
+      "rating": 4.4,
       "image": "../images/images-products/ipad/d11ac8f7e6f479f8f76ba7cb40390045301da904_1754240833.webp",
       "description": "Compact iPad Mini with A15 Bionic chip and 8.3-inch Liquid Retina display."
     },
@@ -169,6 +185,7 @@
       "categoryName": "iPad",
       "price": 52000000,
       "stock": 15,
+      "rating": 4.8,
       "image": "../images/images-products/ipad/d2bfb39e214a2407bd9185419ddc875b50032c86_1754254901.webp",
       "description": "Portable iPad Pro with M2 chip and ProMotion display."
     },
@@ -179,6 +196,7 @@
       "categoryName": "iPad",
       "price": 18000000,
       "stock": 22,
+      "rating": 4.1,
       "image": "../images/images-products/ipad/dfa0d9cc7b043d7398fc1ef0c9b8012a51e39267_1754240834.webp",
       "description": "Budget-friendly iPad with A13 Bionic chip and 10.2-inch display."
     },
@@ -190,6 +208,7 @@
       "categoryName": "Mac",
       "price": 85000000,
       "stock": 10,
+      "rating": 4.8,
       "image": "../images/images-products/mac/31433ce874aca25144610fec94da49fab8c3d476_1754241650.webp",
       "description": "Professional MacBook Pro with M3 Pro chip and Liquid Retina XDR display."
     },
@@ -200,6 +219,7 @@
       "categoryName": "Mac",
       "price": 48000000,
       "stock": 18,
+      "rating": 4.6,
       "image": "../images/images-products/mac/6d9821f1b21317cfdc674f2a1ef83cfe9c57f65e_1723039993.webp",
       "description": "Slim and lightweight MacBook Air with large 15-inch display and M2 chip."
     },
@@ -210,6 +230,7 @@
       "categoryName": "Mac",
       "price": 125000000,
       "stock": 6,
+      "rating": 4.9,
       "image": "../images/images-products/mac/b2c0eb53f0eeacdefb8771155bf5e4887222a654_1733933547.webp",
       "description": "Compact desktop powerhouse with M2 Ultra chip for professionals."
     },
@@ -220,6 +241,7 @@
       "categoryName": "Mac",
       "price": 42000000,
       "stock": 15,
+      "rating": 4.5,
       "image": "../images/images-products/mac/b52f9e5ac0e251729f27ac4f7176068344197b6f_1754241710.webp",
       "description": "All-in-one iMac with M1 chip and stunning 4.5K Retina display."
     },
@@ -230,6 +252,7 @@
       "categoryName": "Mac",
       "price": 28000000,
       "stock": 20,
+      "rating": 4.3,
       "image": "../images/images-products/mac/e75d69cc408ea9d99fee43cd8e3229fa6e57f06a_1723653904.webp",
       "description": "Affordable and powerful compact desktop Mac."
     },
@@ -240,6 +263,7 @@
       "categoryName": "Mac",
       "price": 115000000,
       "stock": 8,
+      "rating": 4.9,
       "image": "../images/images-products/mac/f947a1158081a83438a8f6d7d53ecbdd69f72a37_1723644625.webp",
       "description": "Ultimate performance MacBook Pro with M3 Max chip and long battery life."
     },
@@ -251,6 +275,7 @@
       "categoryName": "Phones",
       "price": 78000000,
       "stock": 20,
+      "rating": 4.9,
       "image": "../images/images-products/phones/48daaebd4cb7706cce21ce8b5e485d6fdafa6bd1_1736598863.webp",
       "description": "Flagship iPhone with titanium design, A17 Pro chip, and advanced camera system."
     },
@@ -261,6 +286,7 @@
       "categoryName": "Phones",
       "price": 52000000,
       "stock": 25,
+      "rating": 4.7,
       "image": "../images/images-products/phones/5af568b4909435c6a215ad5e728e902db234b673_1736597759.webp",
       "description": "Latest iPhone 15 with Dynamic Island and powerful A16 chip."
     },
@@ -271,6 +297,7 @@
       "categoryName": "Phones",
       "price": 62000000,
       "stock": 15,
+      "rating": 4.6,
       "image": "../images/images-products/phones/8288cea7a9b9e55ac7e69a0cdb9dc22f008e1d13_1748852430.webp",
       "description": "iPhone 14 Pro with ProMotion display and advanced camera system."
     },
@@ -281,6 +308,7 @@
       "categoryName": "Phones",
       "price": 38000000,
       "stock": 30,
+      "rating": 4.4,
       "image": "../images/images-products/phones/8da0ac0e9c414ff6bc745cd6b032ef61e6d93cf1_1730113501.webp",
       "description": "iPhone 13 with A15 Bionic chip and dual-camera system."
     },
@@ -291,6 +319,7 @@
       "categoryName": "Phones",
       "price": 22000000,
       "stock": 25,
+      "rating": 4.2,
       "image": "../images/images-products/phones/a3eab70feb1040f19b2160de0fc920b3dee3be7d_1753628757.webp",
       "description": "Compact and affordable iPhone SE with A15 Bionic chip."
     },
@@ -301,6 +330,7 @@
       "categoryName": "Phones",
       "price": 28000000,
       "stock": 22,
+      "rating": 4.3,
       "image": "../images/images-products/phones/c0e079b958167bd0fdef1f0e12440e7fed29b1bd_1727853611.webp",
       "description": "iPhone 12 with A14 Bionic chip and 5G support."
     }
