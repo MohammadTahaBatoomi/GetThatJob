@@ -99,6 +99,8 @@ function loadUser() {
         }
     } else {
         console.log('No saved user found in localStorage');
+        // Load anonymous cart if no user is logged in
+        loadAnonymousCart();
     }
 }
 
@@ -151,6 +153,12 @@ function loginUser(username, password) {
 }
 
 function logoutUser() {
+    // Save current cart as anonymous cart before logging out
+    if (cart.length > 0) {
+        localStorage.setItem('anonymousCart', JSON.stringify(cart));
+        console.log('Cart saved as anonymous cart before logout:', cart.length, 'items');
+    }
+    
     currentUser = null;
     localStorage.removeItem('currentUser');
     cart = [];
@@ -659,6 +667,23 @@ function loadUserCart() {
     }
 }
 
+function loadAnonymousCart() {
+    const anonymousCart = localStorage.getItem('anonymousCart');
+    if (anonymousCart) {
+        try {
+            cart = JSON.parse(anonymousCart);
+            console.log('Anonymous cart loaded:', cart.length, 'items');
+        } catch (error) {
+            console.error('Error parsing anonymous cart:', error);
+            cart = [];
+            localStorage.removeItem('anonymousCart');
+        }
+    } else {
+        cart = [];
+        console.log('No anonymous cart found in localStorage');
+    }
+}
+
 function saveUserCart() {
     if (currentUser) {
         // Ensure cart is properly set
@@ -676,15 +701,14 @@ function saveUserCart() {
         }
         
         console.log('Cart saved for user:', currentUser.username, 'Cart items:', cart.length);
+    } else {
+        // Save as anonymous cart if no user is logged in
+        localStorage.setItem('anonymousCart', JSON.stringify(cart));
+        console.log('Cart saved as anonymous cart:', cart.length, 'items');
     }
 }
 
 function addToCart(productId) {
-    if (!currentUser) {
-        alert('Please login first');
-        return;
-    }
-    
     const product = products.find(p => p.id === productId);
     if (!product) return;
     
@@ -723,7 +747,14 @@ function addToCart(productId) {
         updateCartSummary();
     }
     
-    alert('Product added to cart');
+    // Show different messages for anonymous vs logged-in users
+    if (currentUser) {
+        alert('Product added to cart');
+    } else {
+        alert('Product added to cart! Your items are saved locally. Login to checkout and access your cart across devices.');
+    }
+    
+    console.log('Product added to cart. User:', currentUser ? currentUser.username : 'Anonymous', 'Cart items:', cart.length);
 }
 
 function removeFromCart(productId) {
@@ -1022,6 +1053,21 @@ function updateUI() {
     if (document.getElementById('cartPage').classList.contains('active')) {
         renderCart();
     }
+    
+    // Update anonymous cart notice visibility
+    updateAnonymousCartNotice();
+}
+
+// Function to show/hide anonymous cart notice
+function updateAnonymousCartNotice() {
+    const notice = document.getElementById('anonymousCartNotice');
+    if (notice) {
+        if (!currentUser && cart.length > 0) {
+            notice.style.display = 'block';
+        } else {
+            notice.style.display = 'none';
+        }
+    }
 }
 
 // Event Listeners
@@ -1106,6 +1152,23 @@ function handleLogin(e) {
         currentUser = loginUser(username, password);
         console.log('User logged in:', currentUser.username, 'Cart items:', currentUser.cart ? currentUser.cart.length : 0);
         
+        // Merge anonymous cart with user cart if both exist
+        const anonymousCart = localStorage.getItem('anonymousCart');
+        if (anonymousCart) {
+            try {
+                const anonymousCartData = JSON.parse(anonymousCart);
+                if (anonymousCartData.length > 0) {
+                    console.log('Merging anonymous cart with user cart:', anonymousCartData.length, 'items');
+                    mergeCarts(anonymousCartData, currentUser.cart || []);
+                    // Clear anonymous cart after merging
+                    localStorage.removeItem('anonymousCart');
+                }
+            } catch (error) {
+                console.error('Error parsing anonymous cart during login:', error);
+                localStorage.removeItem('anonymousCart');
+            }
+        }
+        
         loadUserCart();
         saveUser(); // Save user to localStorage after successful login
         
@@ -1130,6 +1193,26 @@ function handleRegister(e) {
     
     try {
         currentUser = registerUser({ firstName, lastName, username, password });
+        
+        // Merge anonymous cart with new user account if it exists
+        const anonymousCart = localStorage.getItem('anonymousCart');
+        if (anonymousCart) {
+            try {
+                const anonymousCartData = JSON.parse(anonymousCart);
+                if (anonymousCartData.length > 0) {
+                    console.log('Merging anonymous cart with new user account:', anonymousCartData.length, 'items');
+                    mergeCarts(anonymousCartData, []);
+                    // Clear anonymous cart after merging
+                    localStorage.removeItem('anonymousCart');
+                }
+            } catch (error) {
+                console.error('Error parsing anonymous cart during registration:', error);
+                localStorage.removeItem('anonymousCart');
+            }
+        }
+        
+        loadUserCart();
+        saveUser();
         updateUI();
         closeModal('registerModal');
         document.getElementById('registerForm').reset();
@@ -1146,6 +1229,12 @@ function handleCheckout() {
         return;
     }
     
+    if (!currentUser) {
+        alert('Please login to proceed with checkout');
+        showModal('loginModal');
+        return;
+    }
+    
     const { total } = calculateTotal();
     alert(`Total payable: $${formatPrice(total)}\n\nIn a real application, the user would be redirected to a payment gateway.`);
 }
@@ -1153,6 +1242,12 @@ function handleCheckout() {
 function generateInvoice() {
     if (cart.length === 0) {
         alert('Your cart is empty');
+        return;
+    }
+    
+    if (!currentUser) {
+        alert('Please login to generate invoice');
+        showModal('loginModal');
         return;
     }
     
@@ -1268,6 +1363,47 @@ window.displayDiscountCodesInfo = displayDiscountCodesInfo;
 
 // Global function for clearing filters
 window.clearFilters = clearFilters;
+
+// Helper function to clear anonymous cart
+function clearAnonymousCart() {
+    localStorage.removeItem('anonymousCart');
+    console.log('Anonymous cart cleared');
+}
+
+// Helper function to merge anonymous cart with user cart
+function mergeCarts(anonymousCart, userCart) {
+    console.log('Starting cart merge. Anonymous items:', anonymousCart.length, 'User items:', userCart.length);
+    
+    const mergedCart = [...userCart];
+    
+    anonymousCart.forEach(anonymousItem => {
+        const existingUserItem = mergedCart.find(item => item.id === anonymousItem.id);
+        
+        if (existingUserItem) {
+            // If item exists in user cart, add quantities (respecting stock limit)
+            const product = products.find(p => p.id === anonymousItem.id);
+            if (product) {
+                const oldQuantity = existingUserItem.quantity;
+                const maxQuantity = Math.min(existingUserItem.quantity + anonymousItem.quantity, product.stock);
+                existingUserItem.quantity = maxQuantity;
+                console.log(`Merged item ${anonymousItem.name}: ${oldQuantity} + ${anonymousItem.quantity} = ${maxQuantity} (stock limit: ${product.stock})`);
+            }
+        } else {
+            // If item doesn't exist in user cart, add it
+            mergedCart.push({...anonymousItem});
+            console.log(`Added new item to user cart: ${anonymousItem.name} (quantity: ${anonymousItem.quantity})`);
+        }
+    });
+    
+    // Update currentUser cart with merged result
+    currentUser.cart = mergedCart;
+    console.log('Carts merged successfully. Total items:', mergedCart.length);
+    
+    // Log final cart contents
+    mergedCart.forEach(item => {
+        console.log(`- ${item.name}: ${item.quantity} x $${formatPrice(item.price)}`);
+    });
+}
 
 // Function to test discount codes (for debugging)
 function testDiscountCodes() {
