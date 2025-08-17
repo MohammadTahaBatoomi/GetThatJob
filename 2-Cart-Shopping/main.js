@@ -335,6 +335,23 @@ function getProductsByCategory(categoryId) {
     return products.filter(product => product.category === categoryId);
 }
 
+// Function to clear all filters
+function clearFilters() {
+    currentFilter = '';
+    currentCategory = '';
+    currentPage = 1;
+    
+    // Reset form inputs
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    
+    if (searchInput) searchInput.value = '';
+    if (categoryFilter) categoryFilter.value = '';
+    
+    // Re-render products
+    renderProducts();
+}
+
 // Function to search products
 function searchProducts(query) {
     const searchTerm = query.toLowerCase();
@@ -464,10 +481,30 @@ function getPaginatedProducts() {
 
 function renderProducts() {
     const productsGrid = document.getElementById('productsGrid');
+    const filteredProducts = getFilteredProducts();
     const paginatedProducts = getPaginatedProducts();
-    
+
     productsGrid.innerHTML = '';
+       // اگر هیچ محصولی پیدا نشد، پیام مناسب نمایش بده
+       if (filteredProducts.length === 0) {
+        const noResultsDiv = document.createElement('div');
+        noResultsDiv.innerHTML = `
+                <img class="no-results-image" src="images/original-edbc9b1a905204e54ac50ca36215712a-removebg-preview.png" class="no-results-image">
+        `;
+        productsGrid.appendChild(noResultsDiv);
+        
+        // pagination را مخفی کن
+        const pagination = document.getElementById('pagination');
+        if (pagination) {
+            pagination.innerHTML = '';
+        }
+        return;
+    }
     
+    
+ 
+    
+    // اگر محصولی وجود دارد، آن‌ها را نمایش بده
     paginatedProducts.forEach(product => {
         const productCard = createProductCard(product);
         productsGrid.appendChild(productCard);
@@ -1193,6 +1230,9 @@ window.addDiscountCode = addDiscountCode;
 window.getActiveDiscountCodes = getActiveDiscountCodes;
 window.updateDiscountUsage = updateDiscountUsage;
 window.displayDiscountCodesInfo = displayDiscountCodesInfo;
+
+// Global function for clearing filters
+window.clearFilters = clearFilters;
 
 // Function to test discount codes (for debugging)
 function testDiscountCodes() {
