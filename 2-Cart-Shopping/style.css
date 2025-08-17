@@ -1138,7 +1138,7 @@ body {
     
     .modal-content {
         width: 95%;
-        padding: var(--spacing-md);
+        padding: var(--spacing-xl);
     }
 }
 

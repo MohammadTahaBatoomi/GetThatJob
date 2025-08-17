@@ -28,13 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function initializeApp() {
+    console.log('Initializing app...');
+    
     loadTheme();
     loadUser();
+    
+    console.log('After loadUser - currentUser:', currentUser ? currentUser.username : 'null', 'Cart items:', cart.length);
+    
     await generateProducts();
     setupEventListeners();
     showPage('home');
     renderHomeProducts();
     updateUI();
+    
+    console.log('App initialized - currentUser:', currentUser ? currentUser.username : 'null', 'Cart items:', cart.length);
     
     // Display product statistics in console
     displayProductStats();
@@ -81,8 +88,17 @@ function updateThemeIcon(theme) {
 function loadUser() {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        loadUserCart();
+        try {
+            currentUser = JSON.parse(savedUser);
+            console.log('User loaded from localStorage:', currentUser.username, 'Cart items:', currentUser.cart ? currentUser.cart.length : 0);
+            loadUserCart();
+        } catch (error) {
+            console.error('Error parsing saved user:', error);
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+        }
+    } else {
+        console.log('No saved user found in localStorage');
     }
 }
 
@@ -632,16 +648,22 @@ function changePage(page) {
 
 // Cart Management
 function loadUserCart() {
-    if (currentUser && currentUser.cart) {
-        cart = currentUser.cart;
+    if (currentUser && currentUser.cart && Array.isArray(currentUser.cart)) {
+        cart = [...currentUser.cart]; // Create a copy to avoid reference issues
     } else {
         cart = [];
+        // Ensure currentUser has a cart property
+        if (currentUser) {
+            currentUser.cart = [];
+        }
     }
 }
 
 function saveUserCart() {
     if (currentUser) {
-        currentUser.cart = cart;
+        // Ensure cart is properly set
+        currentUser.cart = [...cart]; // Create a copy to avoid reference issues
+        
         // Save to localStorage immediately
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
@@ -652,6 +674,8 @@ function saveUserCart() {
             users[userIndex] = currentUser;
             localStorage.setItem('users', JSON.stringify(users));
         }
+        
+        console.log('Cart saved for user:', currentUser.username, 'Cart items:', cart.length);
     }
 }
 
@@ -1080,7 +1104,13 @@ function handleLogin(e) {
     
     try {
         currentUser = loginUser(username, password);
+        console.log('User logged in:', currentUser.username, 'Cart items:', currentUser.cart ? currentUser.cart.length : 0);
+        
         loadUserCart();
+        saveUser(); // Save user to localStorage after successful login
+        
+        console.log('User saved to localStorage, currentUser:', currentUser.username, 'Cart items:', currentUser.cart ? currentUser.cart.length : 0);
+        
         updateUI();
         closeModal('loginModal');
         document.getElementById('loginForm').reset();
