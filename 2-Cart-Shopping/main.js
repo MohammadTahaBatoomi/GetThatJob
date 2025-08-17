@@ -625,10 +625,8 @@ function createProductCard(product) {
             <p class="product-price">$${formatPrice(product.price)}</p>
             <p class="product-stock">Stock: ${product.stock} units</p>
             <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
-                    ${!currentUser ? 'disabled' : ''} 
                     ${product.stock === 0 ? 'disabled' : ''}>
-                ${!currentUser ? 'Please login to add' : 
-                  product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
             </button>
         </div>
     `;
@@ -785,12 +783,7 @@ function addToCart(productId) {
         updateCartSummary();
     }
     
-    // Show different messages for anonymous vs logged-in users
-    if (currentUser) {
-        alert('Product added to cart');
-    } else {
-        alert('Product added to cart! Your items are saved locally. Login to checkout and access your cart across devices.');
-    }
+    alert('Product added to cart!');
     
     console.log('Product added to cart. User:', currentUser ? currentUser.username : 'Anonymous', 'Cart items:', cart.length);
 }
@@ -1016,10 +1009,8 @@ function showProductDetail(product) {
             <p>${product.description}</p>
             <div class="product-detail-actions">
                 <button class="add-to-cart-btn" onclick="addToCart(${product.id})" 
-                        ${!currentUser ? 'disabled' : ''} 
                         ${product.stock === 0 ? 'disabled' : ''}>
-                    ${!currentUser ? 'Please login to add' : 
-                      product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                    ${product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
                 </button>
             </div>
         </div>
@@ -1306,8 +1297,6 @@ function generateInvoice() {
                 .header { text-align: center; margin-bottom: 30px; }
                 .customer-info { margin-bottom: 20px; }
                 table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                th { background-color: #f2f2f2; }
                 .total { font-weight: bold; }
             </style>
         </head>
