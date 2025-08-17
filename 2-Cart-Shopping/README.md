@@ -152,7 +152,7 @@ console.log(laptops);
 ├── index.html          # Main HTML file
 ├── style.css           # CSS styles
 ├── main.js             # JavaScript functionality
-├── db.json             # Database with products, categories, and discount codes
+├── db                  # Database with products, categories, and discount codes
 └── README.md           # This file
 ```
 
@@ -197,6 +197,5 @@ console.log(laptops);
 - Safari 12+
 - Edge 79+
 
-## License
 
 This project is open source and available under the MIT License. 

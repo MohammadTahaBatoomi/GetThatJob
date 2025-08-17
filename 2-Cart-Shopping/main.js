@@ -62,6 +62,7 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
     const mobileIcon = document.querySelector('#mobileThemeToggle i');
     const mobileText = document.querySelector('#mobileThemeToggle span');
+    const desktopIcon = document.querySelector('#desktopThemeToggle i');
     
     if (mobileIcon) {
         mobileIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
@@ -69,6 +70,10 @@ function updateThemeIcon(theme) {
     
     if (mobileText) {
         mobileText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+    
+    if (desktopIcon) {
+        desktopIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
 }
 
@@ -971,7 +976,8 @@ function setupEventListeners() {
     // Mobile menu toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
     
-    // Theme toggle (only mobile)
+    // Theme toggle (desktop and mobile)
+    document.getElementById('desktopThemeToggle').addEventListener('click', toggleTheme);
     document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
     
     // Authentication

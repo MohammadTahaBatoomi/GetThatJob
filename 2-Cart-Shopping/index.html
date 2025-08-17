@@ -11,16 +11,16 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
-        <div class="nav-logo">
-          <h2>Digishop</h2>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+                <!-- Mobile Menu Button -->
+           <div class="nav-mobile-menu-btn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+              <i class="fa fa-bars"></i>
+           </button>
+   
+           <div class="nav-logo">
+             <h2>Digishop</h2>
+           </div>
+           </div>
 
         <div class="nav-menu" id="navMenu">
           <a href="#" class="nav-link active" data-page="home">
@@ -46,6 +46,11 @@
         </div>
 
         <div class="nav-actions">
+          <!-- Desktop Theme Toggle -->
+          <button class="theme-toggle desktop-theme-toggle" id="desktopThemeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          
           <div class="auth-section" id="authSection">
             <!-- Login/Register buttons will be shown here when not logged in -->
             <button class="auth-btn" id="loginBtn">
@@ -225,9 +230,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Login to Account</h3>
-          <button class="close-btn" onclick="closeModal('loginModal')">
-            &times;
-          </button>
+                  <button class="close-btn" onclick="closeModal('loginModal')">
+          <i class="fas fa-times"></i>
+        </button>
         </div>
         <form id="loginForm" class="auth-form">
           <div class="form-group">
@@ -250,9 +255,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Register</h3>
-          <button class="close-btn" onclick="closeModal('registerModal')">
-            &times;
-          </button>
+                  <button class="close-btn" onclick="closeModal('registerModal')">
+          <i class="fas fa-times"></i>
+        </button>
         </div>
         <form id="registerForm" class="auth-form">
           <div class="form-group">
@@ -284,9 +289,9 @@
       <div class="modal-content product-modal">
         <div class="modal-header">
           <h3 id="modalProductTitle">Product Details</h3>
-          <button class="close-btn" onclick="closeModal('productModal')">
-            &times;
-          </button>
+                  <button class="close-btn" onclick="closeModal('productModal')">
+          <i class="fas fa-times"></i>
+        </button>
         </div>
         <div class="product-detail-content" id="productDetailContent">
           <!-- Product details will be loaded here -->

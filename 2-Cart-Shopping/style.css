@@ -52,6 +52,29 @@
     box-sizing: border-box;
 }
 
+/* Smooth scrolling for all elements */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
 html {
     font-size: 16px;
     scroll-behavior: smooth;
@@ -97,35 +120,28 @@ body {
     gap: var(--spacing-xl);
 }
 
+.nav-mobile-menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
-    flex-direction: column;
     background: none;
     border: none;
     cursor: pointer;
     padding: var(--spacing-sm);
-    gap: 4px;
-}
-
-.mobile-menu-btn span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-primary);
-    border-radius: 2px;
+    border-radius: var(--border-radius-md);
     transition: all var(--transition-fast);
+    color: var(--text-primary);
+    font-size: 1.2rem;
 }
 
-.mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+.mobile-menu-btn i {
+    font-size: 1.3rem;
 }
 
 .nav-link {
@@ -157,7 +173,6 @@ body {
 }
 
 .theme-toggle {
-    display: none; /* Hide desktop theme toggle */
     background: none;
     border: none;
     color: var(--text-secondary);
@@ -166,6 +181,27 @@ body {
     padding: var(--spacing-sm);
     border-radius: var(--border-radius-md);
     transition: all var(--transition-fast);
+}
+
+/* Desktop theme toggle - visible on larger screens */
+.desktop-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    padding: var(--spacing-sm);
+}
+
+/* Ensure desktop theme toggle only shows icon */
+.desktop-theme-toggle span {
+    display: none;
+}
+
+/* Mobile theme toggle - hidden by default */
+.mobile-theme-toggle {
+    display: none;
 }
 
 .theme-toggle:hover {
@@ -784,17 +820,21 @@ body {
 .close-btn {
     background: none;
     border: none;
-    font-size: 1.5rem;
     color: var(--text-secondary);
     cursor: pointer;
     padding: var(--spacing-sm);
     border-radius: var(--border-radius-sm);
     transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
 }
 
-.close-btn:hover {
-    color: var(--error-color);
-    background-color: rgba(239, 68, 68, 0.1);
+
+.close-btn i {
+    font-size: 1.2rem;
 }
 
 /* Forms */
@@ -916,6 +956,18 @@ body {
         height: 60px;
     }
     
+    /* Enhanced mobile menu button */
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: var(--border-radius-md);
+        background-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    
     .mobile-menu-btn {
         display: flex;
     }
@@ -953,10 +1005,11 @@ body {
         width: 100%;
         padding: var(--spacing-md) var(--spacing-lg);
         border-bottom: 1px solid var(--border-color);
+        display: block;
     }
     
     .mobile-theme-toggle .theme-toggle {
-        display: flex !important; /* Force show in mobile menu */
+        display: flex !important;
         width: 100%;
         justify-content: center;
         background: none;
@@ -966,6 +1019,8 @@ body {
         color: var(--text-primary);
         font-size: 1.1rem;
         transition: all var(--transition-fast);
+        align-items: center;
+        gap: var(--spacing-sm);
     }
     
     .mobile-theme-toggle .theme-toggle:hover {
@@ -973,6 +1028,13 @@ body {
         color: white;
         border-color: var(--primary-color);
     }
+    
+    /* Hide desktop theme toggle on mobile */
+    .desktop-theme-toggle {
+        display: none !important;
+    }
+    
+
     
     .main-content {
         padding: var(--spacing-md) var(--spacing-md);
@@ -1086,6 +1148,40 @@ body {
 [data-theme="dark"] .view-all-btn:hover {
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
     background: linear-gradient(135deg, #1e40af, var(--primary-color));
+}
+
+/* Enhanced focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Loading states for buttons */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Category Headers for Home Page */
