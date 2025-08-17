@@ -144,7 +144,7 @@ function logoutUser() {
     // Clear cart display
     const cartItems = document.getElementById('cartItems');
     if (cartItems) {
-        cartItems.innerHTML = '<p class="text-center">Your cart is empty</p>';
+        cartItems.innerHTML = '<div class="empty-cart"><img src="/images/empty-cart.svg" /></div>';
     }
     
     // Reset cart summary
@@ -703,7 +703,7 @@ function renderCart() {
     cartItems.innerHTML = '';
     
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="text-center">Your cart is empty</p>';
+        cartItems.innerHTML = '<div class="empty-cart"><img src="/images/empty-cart.svg" /></div>';
         cartItemCount.textContent = '0 items';
         summaryItemCount.textContent = '0';
         return;
