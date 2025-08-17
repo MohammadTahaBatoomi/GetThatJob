@@ -872,7 +872,6 @@ function showProductDetail(product) {
         <img src="${product.image}" alt="${product.name}" class="product-detail-image">
         <div class="product-detail-info">
             <h4>${product.name}</h4>
-            <p class="product-detail-category">Category: ${product.categoryName}</p>
             <p class="product-detail-price">$${formatPrice(product.price)}</p>
             <p class="product-detail-stock">Stock: ${product.stock} units</p>
             <p>${product.description}</p>
