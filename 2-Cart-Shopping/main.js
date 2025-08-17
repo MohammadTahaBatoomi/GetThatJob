@@ -494,7 +494,7 @@ function renderProducts() {
         noResultsDiv.style.alignItems = 'center';
         noResultsDiv.style.minHeight = '400px';
         noResultsDiv.innerHTML = `
-                <img class="no-results-image" src="images/original-edbc9b1a905204e54ac50ca36215712a-removebg-preview.png" class="no-results-image">
+                <img class="no-results-image" src="images/original-7aa7090efc88959fa585be336358a674-removebg-preview.png" class="no-results-image">
         `;
         productsGrid.appendChild(noResultsDiv);
         

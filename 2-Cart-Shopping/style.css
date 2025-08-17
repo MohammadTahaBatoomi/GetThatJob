@@ -636,8 +636,8 @@ body {
 
 /* No Results State */
 .no-results-image {
-    width: 450px;
-    height: 300px;
+    width: 350px;
+    height: 200px;
     object-fit: cover;
     margin-top: 120px;
 }
