@@ -213,7 +213,7 @@ body {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-xl);
     margin: 5px;
     border-radius: var(--border-radius-md);
     font-weight: 500;
@@ -245,26 +245,20 @@ body {
 }
 
 .logout-btn {
-    background-color: var(--error-color);
-    color: white;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
     border: none;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 8px;
     border-radius: var(--border-radius-md);
     font-weight: 500;
     cursor: pointer;
-    margin-right: 10px;
     transition: all var(--transition-fast);
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
 }
 
 .logout-btn i {
     font-size: 1rem;
-}
-
-.logout-btn:hover {
-    background-color: #dc2626;
 }
 
 /* Main Content */
@@ -521,7 +515,7 @@ body {
 .cart-items {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .cart-item {
@@ -616,6 +610,7 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 500;
+    margin-top: var(--spacing-2xl);
     transition: color var(--transition-fast);
 }
 
@@ -842,6 +837,27 @@ body {
     font-size: 1.2rem;
 }
 
+/* Authentication and User Sections */
+.auth-section {
+    display: flex;
+    align-items: center;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.user-section .user-greeting {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* Forms */
 .auth-form {
     display: flex;
@@ -879,7 +895,7 @@ body {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
     font-weight: 600;
     cursor: pointer;
@@ -1107,6 +1123,10 @@ body {
     }
 }
 
+.auth-btn {
+    padding: var(--spacing-sm);
+}
+
 /* Utility Classes */
 .text-center {
     text-align: center;
@@ -1257,3 +1277,9 @@ textarea:focus {
     background: #dc2626 !important;
     transform: translateY(-1px) !important;
 }
+
+
+
+
+
+

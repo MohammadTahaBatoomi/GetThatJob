@@ -943,7 +943,7 @@ function updateUI() {
     if (currentUser) {
         authSection.style.display = 'none';
         userSection.style.display = 'flex';
-        userGreeting.textContent = `Hello ${currentUser.firstName} ${currentUser.lastName}`;
+        userGreeting.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
     } else {
         authSection.style.display = 'flex';
         userSection.style.display = 'none';
