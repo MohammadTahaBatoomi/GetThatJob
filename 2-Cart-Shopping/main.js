@@ -954,8 +954,14 @@ function setupEventListeners() {
             e.preventDefault();
             const page = link.getAttribute('data-page');
             showPage(page);
+            
+            // Close mobile menu after navigation
+            closeMobileMenu();
         });
     });
+    
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
     
     // Theme toggle
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -1196,4 +1202,31 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         testDiscountCodes();
     }, 1000);
+});
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    mobileMenuBtn.classList.toggle('active');
+    navMenu.classList.toggle('active');
+}
+
+function closeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    mobileMenuBtn.classList.remove('active');
+    navMenu.classList.remove('active');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (!mobileMenuBtn.contains(e.target) && !navMenu.contains(e.target)) {
+        closeMobileMenu();
+    }
 });

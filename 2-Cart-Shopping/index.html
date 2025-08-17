@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Store</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" />
   </head>
   <body>
     <!-- Navigation -->
@@ -14,10 +15,26 @@
           <h2>Digishop</h2>
         </div>
 
-        <div class="nav-menu">
-          <a href="#" class="nav-link active" data-page="home">Home</a>
-          <a href="#" class="nav-link" data-page="products">Shopping</a>
-          <a href="#" class="nav-link" data-page="cart">Cart</a>
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#" class="nav-link active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a href="#" class="nav-link" data-page="products">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Shopping</span>
+          </a>
+          <a href="#" class="nav-link" data-page="cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+          </a>
         </div>
 
         <div class="nav-actions">
@@ -27,14 +44,26 @@
 
           <div class="auth-section" id="authSection">
             <!-- Login/Register buttons will be shown here when not logged in -->
-            <button class="auth-btn" id="loginBtn">Login</button>
-            <button class="auth-btn" id="registerBtn">Register</button>
+            <button class="auth-btn" id="loginBtn">
+              <i class="fas fa-sign-in-alt"></i>
+              <span>Login</span>
+            </button>
+            <button class="auth-btn" id="registerBtn">
+              <i class="fas fa-user-plus"></i>
+              <span>Register</span>
+            </button>
           </div>
 
           <div class="user-section" id="userSection" style="display: none">
             <!-- User info will be shown here when logged in -->
-            <span class="user-greeting" id="userGreeting">Hello User</span>
-            <button class="logout-btn" id="logoutBtn">Logout</button>
+            <span class="user-greeting" id="userGreeting">
+              <i class="fas fa-user"></i>
+              <span>Hello User</span>
+            </span>
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </button>
           </div>
         </div>
       </div>
@@ -166,9 +195,13 @@
               <span id="totalPrice">$0</span>
             </div>
 
-            <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+            <button class="checkout-btn" id="checkoutBtn">
+              <i class="fas fa-credit-card"></i>
+              <span>Checkout</span>
+            </button>
             <button class="invoice-btn" id="invoiceBtn">
-              Download PDF Invoice
+              <i class="fas fa-file-pdf"></i>
+              <span>Download PDF Invoice</span>
             </button>
           </div>
         </div>
@@ -201,7 +234,10 @@
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" required />
           </div>
-          <button type="submit" class="submit-btn">Login</button>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+          </button>
         </form>
       </div>
     </div>
@@ -231,7 +267,10 @@
             <label for="registerPassword">Password</label>
             <input type="password" id="registerPassword" required />
           </div>
-          <button type="submit" class="submit-btn">Register</button>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-user-plus"></i>
+            <span>Register</span>
+          </button>
         </form>
       </div>
     </div>
