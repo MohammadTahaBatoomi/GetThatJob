@@ -157,6 +157,7 @@ body {
 }
 
 .theme-toggle {
+    display: none; /* Hide desktop theme toggle */
     background: none;
     border: none;
     color: var(--text-secondary);
@@ -930,7 +931,7 @@ body {
         align-items: center;
         justify-content: flex-start;
         padding-top: var(--spacing-xl);
-        gap: var(--spacing-lg);
+        gap: 0;
         transition: left var(--transition-normal);
         box-shadow: 2px 0 10px var(--shadow-color);
         z-index: 999;
@@ -946,6 +947,31 @@ body {
         width: 100%;
         text-align: center;
         border-bottom: 1px solid var(--border-color);
+    }
+    
+    .mobile-theme-toggle {
+        width: 100%;
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .mobile-theme-toggle .theme-toggle {
+        display: flex !important; /* Force show in mobile menu */
+        width: 100%;
+        justify-content: center;
+        background: none;
+        border: 1px solid var(--border-color);
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-md);
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        transition: all var(--transition-fast);
+    }
+    
+    .mobile-theme-toggle .theme-toggle:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
     }
     
     .main-content {

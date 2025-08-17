@@ -60,8 +60,16 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    const icon = document.querySelector('#themeToggle i');
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    const mobileIcon = document.querySelector('#mobileThemeToggle i');
+    const mobileText = document.querySelector('#mobileThemeToggle span');
+    
+    if (mobileIcon) {
+        mobileIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    
+    if (mobileText) {
+        mobileText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
 }
 
 // User Management
@@ -963,8 +971,8 @@ function setupEventListeners() {
     // Mobile menu toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
     
-    // Theme toggle
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    // Theme toggle (only mobile)
+    document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
     
     // Authentication
     document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
