@@ -1,0 +1,1 @@
+Due to being involved in several projects this week, I wasn’t able to complete Task #3 for now. However, I’ll put in my best effort and come back stronger for the next one.
